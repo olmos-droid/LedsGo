@@ -50,14 +50,10 @@ public class Scraper implements Runnable {
             registry.setAutoThrottle(true);
             registry.startPushing();
             List<PixelPusher> pushers = registry.getPushers(0);
-//            List<Strip> strips = pushers.get(0).getStrips();
-            List<Strip> strips = registry.getStrips();
-//            prepareExitHandler(registry);
+            List<Strip> strips = pushers.get(0).getStrips();
+            prepareExitHandler(registry);
 
-//            for (Strip strip : strips)
-//            {
-//            for (int i = 0; i < 1; i++)
-//            {
+
                 for (int j = 0; j < 24; j++)
                 {
                     strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 255, (byte) 0), j);
@@ -72,8 +68,8 @@ public class Scraper implements Runnable {
                 }
             }
         }
-//    }
-//    }
+
+
 
 
     private void prepareExitHandler(DeviceRegistry registry) {
