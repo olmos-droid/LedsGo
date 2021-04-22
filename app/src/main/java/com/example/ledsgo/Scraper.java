@@ -12,11 +12,11 @@ import com.heroicrobot.dropbit.registry.DeviceRegistry;
 import java.util.List;
 
 public class Scraper implements Runnable {
-    public static final String TAG="scraper";
+    public static final String TAG = "scraper";
     int nStrip;
     DeviceRegistry registry;
     TestObserver testObserver;
-    boolean stopthread = false;
+    boolean stopthread;
 
 
 //    public Scraper(int nStrip, DeviceRegistry registry, TestObserver testObserver) {
@@ -43,36 +43,37 @@ public class Scraper implements Runnable {
 
     @Override
     public void run() {
-        while (!registry.hasChanged() && !isStopthread())
+//        while (!registry.hasChanged() && !isStopthread())
+        while (!registry.hasChanged())
         {
             registry.setExtraDelay(0);
             registry.setAutoThrottle(true);
             registry.startPushing();
             List<PixelPusher> pushers = registry.getPushers(0);
-            List<Strip> strips = pushers.get(0).getStrips();
-            prepareExitHandler(registry);
+//            List<Strip> strips = pushers.get(0).getStrips();
+            List<Strip> strips = registry.getStrips();
+//            prepareExitHandler(registry);
 
-            for (Strip strip : strips)
-            {
-                for (int i = 0; i < strip.getLength(); i++)
+//            for (Strip strip : strips)
+//            {
+//            for (int i = 0; i < 1; i++)
+//            {
+                for (int j = 0; j < 24; j++)
                 {
-                    for (int j = 0; j < 24; j++)
+                    strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 255, (byte) 0), j);
+                    try
                     {
-                        strip.setPixel(new Pixel((byte) 0, (byte) 255, (byte) 0), j);
-                        try
-                        {
-                            Thread.sleep(50);
-                        } catch (InterruptedException e)
-                        {
-                            e.printStackTrace();
-                        }
-                        strip.setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+                        Thread.sleep(50);
+                    } catch (InterruptedException e)
+                    {
+                        e.printStackTrace();
                     }
+                    strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
                 }
             }
         }
-    }
-
+//    }
+//    }
 
 
     private void prepareExitHandler(DeviceRegistry registry) {
