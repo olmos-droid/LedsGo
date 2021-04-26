@@ -67,6 +67,7 @@ public class Tiras extends AppCompatActivity implements LifecycleObserver {
                 try
                 {
                     //TODO HAY QUE PARAR ESTO
+
                 } catch (Throwable throwable)
                 {
                     throwable.printStackTrace();

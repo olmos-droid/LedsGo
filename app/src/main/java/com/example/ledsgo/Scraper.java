@@ -53,23 +53,27 @@ public class Scraper implements Runnable {
             List<Strip> strips = pushers.get(0).getStrips();
             prepareExitHandler(registry);
 
+            Log.d(TAG, "run:================================" +strips.get(0).getLength());
 
-                for (int j = 0; j < 24; j++)
-                {
-                    strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 255, (byte) 0), j);
-                    try
-                    {
-                        Thread.sleep(50);
-                    } catch (InterruptedException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
-                }
-            }
+            ratita(strips);
+
+        }
         }
 
-
+    private void ratita(List<Strip> strips) {
+        for (int j = 0; j < 24; j++)
+        {
+            strips.get(this.nStrip).setPixel(new Pixel((byte) 255, (byte) 255, (byte) 0), j);
+            try
+            {
+                Thread.sleep(50);
+            } catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+            strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+        }
+    }
 
 
     private void prepareExitHandler(DeviceRegistry registry) {
