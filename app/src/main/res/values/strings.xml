@@ -4,4 +4,5 @@
     <string name="username">Nom d\'usuari</string>
     <string name="password">Contrasenya</string>
     <string name="startsession">Iniciar sessio</string>
+    <string name="logoDescription">logo de la applicacció</string>
 </resources>
