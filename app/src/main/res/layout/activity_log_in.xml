@@ -32,7 +32,7 @@
             android:layout_margin="3dp"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/source_code_pro_black"
-            android:text="Crear Usuari"
+            android:text="@string/create_user"
             android:textColor="@color/purple_100"
             app:cornerRadius="0dp" />
 
@@ -44,7 +44,7 @@
             android:ems="10"
             android:fontFamily="@font/source_code_pro_medium"
             android:inputType="textPersonName"
-            android:text="Nom d'usuari"
+            android:text="@string/username"
             android:textColor="@color/white_50"
             android:textColorLink="@color/white"
             android:textSize="14sp" />
@@ -56,7 +56,7 @@
             android:layout_margin="3dp"
             android:ems="10"
             android:fontFamily="@font/source_code_pro_medium"
-            android:hint="Contrasenya"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:textColor="@color/white"
             android:textColorHint="@color/white_50"
@@ -70,7 +70,8 @@
             android:layout_margin="3dp"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/source_code_pro_black"
-            android:text="Iniciar sessio"
+            android:text="@string/s
+            tartsession"
             android:textColor="@color/purple_100"
             app:cornerRadius="0dp" />
     </LinearLayout>
