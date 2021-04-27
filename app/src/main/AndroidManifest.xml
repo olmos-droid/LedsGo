@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LedsGo">
-        <activity android:name=".Tira"></activity>
+        <activity android:name=".LogIn"></activity>
+        <activity android:name=".Tira" />
         <activity android:name=".Tiras" />
         <activity android:name=".MainActivity">
             <intent-filter>
