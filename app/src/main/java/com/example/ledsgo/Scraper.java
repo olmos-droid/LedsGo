@@ -12,7 +12,7 @@ import com.heroicrobot.dropbit.registry.DeviceRegistry;
 import java.util.List;
 
 public class Scraper implements Runnable {
-    public static final String TAG = "scraper";
+    public static final String TAG = "Scraper";
     int nStrip;
     DeviceRegistry registry;
     TestObserver testObserver;
@@ -33,18 +33,9 @@ public class Scraper implements Runnable {
         this.stopthread = stopthread;
     }
 
-    public boolean isStopthread() {
-        return stopthread;
-    }
-
-    public void setStopthread(boolean stopthread) {
-        this.stopthread = stopthread;
-    }
-
     @Override
     public void run() {
-//        while (!registry.hasChanged() && !isStopthread())
-        while (!registry.hasChanged())
+        while (!registry.hasChanged() || stopthread)
         {
             registry.setExtraDelay(0);
             registry.setAutoThrottle(true);
@@ -52,18 +43,40 @@ public class Scraper implements Runnable {
             List<PixelPusher> pushers = registry.getPushers(0);
             List<Strip> strips = pushers.get(0).getStrips();
             prepareExitHandler(registry);
+            Log.d(TAG, "run:================================" + strips.get(0).getLength());
 
-            Log.d(TAG, "run:================================" +strips.get(0).getLength());
-
+//            ratita_AllLeds(strips);
             ratita(strips);
+//            allLeds(strips);
 
         }
+    }
+
+    private void ratita_AllLeds(List<Strip> strips) {
+        ratita(strips);
+        allLeds(strips);
+
+    }
+
+    private void allLeds(List<Strip> strips) {
+        for (int j = 0; j < 24; j++)
+        {
+            strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 255, (byte) 255), j);
+            try
+            {
+                Thread.sleep(0);
+            } catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+
         }
+    }
 
     private void ratita(List<Strip> strips) {
         for (int j = 0; j < 24; j++)
         {
-            strips.get(this.nStrip).setPixel(new Pixel((byte) 255, (byte) 255, (byte) 0), j);
+            strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
             try
             {
                 Thread.sleep(50);

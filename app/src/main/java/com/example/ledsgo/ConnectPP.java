@@ -5,8 +5,8 @@ import android.util.Log;
 
 import com.heroicrobot.dropbit.registry.DeviceRegistry;
 
-public class ConnectPP implements Runnable{
-    private static final String TAG ="TAG" ;
+public class ConnectPP implements Runnable {
+    private static final String TAG = "TAG";
 
     DeviceRegistry registry;
     TestObserver testObserver;
@@ -40,9 +40,9 @@ public class ConnectPP implements Runnable{
 
     @Override
     public void run() {
-        Log.d(TAG, "run: dins run");
         registry = new DeviceRegistry();
         testObserver = new TestObserver();
         registry.addObserver(testObserver);
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.ledsgo;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -10,7 +11,15 @@ import androidx.lifecycle.LifecycleObserver;
 
 import com.heroicrobot.dropbit.registry.DeviceRegistry;
 
-public class Tiras extends AppCompatActivity implements LifecycleObserver {
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.ThreadPoolExecutor;
+
+public class Tiras extends AppCompatActivity  {
+    private static final String TAG = "Tiras";
+
     Button buttonStrip0;
     Button buttonStrip1;
     Button buttonStop;
@@ -31,49 +40,41 @@ public class Tiras extends AppCompatActivity implements LifecycleObserver {
         buttonStop = findViewById(R.id.button_Stop);
         registry.addObserver(testObserver);
 
-        ConnectPP connectPP = new ConnectPP(registry, testObserver);
-        Thread threadConnectpp = new Thread(connectPP);
-        threadConnectpp.start();
+
+        int nCore = Runtime.getRuntime().availableProcessors(); // miramos cuantos procesadores tiene el phone
+        ExecutorService service = Executors.newFixedThreadPool(nCore);
+        service.execute(new ConnectPP(registry, testObserver));
 
 
-        strip0 = new Scraper(0, registry, testObserver, false);
-        strip1 = new Scraper(1, registry, testObserver, false);
+        ExecutorService strip0 = Executors.newFixedThreadPool(1);
 
-        Thread threadStrip0 = new Thread(strip0);
-        Thread threadStrip1 = new Thread(strip1);
+
+
 
 
         buttonStrip0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                threadStrip0.setName("strip0");
-                threadStrip0.start();
-                Toast.makeText(Tiras.this, threadStrip0.getName() + " working", Toast.LENGTH_SHORT).show();
+                service.execute(new Scraper(0, registry, testObserver, false));
+
             }
         });
         buttonStrip1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-                threadStrip1.setName("strip1");
-                threadStrip1.start();
-                Toast.makeText(Tiras.this, threadStrip1.getName() + " working", Toast.LENGTH_SHORT).show();
             }
         });
         buttonStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try
-                {
-                    //TODO HAY QUE PARAR ESTO
 
-                } catch (Throwable throwable)
-                {
-                    throwable.printStackTrace();
-                }
+
+
+
             }
         });
 
     }
+
 }
