@@ -2,20 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraint_login"
+    android:id="@+id/constraint_SignUp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/purple_100"
-    tools:context=".LogIn">
+    tools:context=".SignUp">
 
     <LinearLayout
-        android:id="@+id/linearLayout_login"
+        android:id="@+id/linearLayout_SignUp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="3dp"
         android:gravity="center"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="3dp">
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/imageView_login_logo"
@@ -27,74 +26,64 @@
             app:srcCompat="@drawable/logocompleto" />
 
         <EditText
-            android:id="@+id/editText_Login_UserName"
+            android:id="@+id/editText_SignUp_EmailAddress"
+
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:autofillHints=""
-            android:backgroundTint="@color/white_50"
             android:ems="10"
             android:fontFamily="@font/source_code_pro_medium"
-            android:hint="@string/username_email"
-            android:inputType="textPersonName|textEmailAddress"
-            android:textColor="@color/white"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white_50"
             android:textColorHint="@color/white_50"
             android:textColorLink="@color/white"
-            android:textCursorDrawable="@color/white"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/editText_SignUp_Password"
+
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:backgroundTint="@color/white_50"
+            android:autofillHints=""
             android:ems="10"
             android:fontFamily="@font/source_code_pro_medium"
             android:hint="@string/password"
-            android:importantForAutofill="no"
-            android:inputType="textPassword"
-            android:textColor="@color/white"
+            android:inputType="textVisiblePassword"
+            android:textColor="@color/white_50"
             android:textColorHint="@color/white_50"
             android:textColorLink="@color/white"
-            android:textCursorDrawable="@color/white"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/editText_SignUp_ConfirmPassword"
+
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:fontFamily="@font/source_code_pro_medium"
+            android:hint="@string/confirmPassword"
+            android:inputType="textVisiblePassword"
+            android:textColor="@color/white_50"
+            android:textColorHint="@color/white_50"
+            android:textColorLink="@color/white"
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/button_Login_StartSession"
+            android:id="@+id/button_Signin_CreateUser"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:backgroundTint="@color/white"
-            android:fontFamily="@font/source_code_pro_black"
-            android:text="@string/startsession"
-            android:textColor="@color/purple_100"
-            app:cornerRadius="0dp" />
-
-        <TextView
-            android:id="@+id/textView_Login_ForgetPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:backgroundTint="@color/white"
-            android:clickable="true"
-            android:ems="10"
-            android:fontFamily="@font/source_code_pro_bold"
-            android:gravity="center"
-            android:inputType="textPersonName"
-            android:text="Contrasenya oblidada?"
-            android:textColor="@color/white_50"
-            android:textSize="10sp" />
-
-        <Button
-            android:id="@+id/button_Login_CreateUser"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/source_code_pro_black"
             android:text="@string/create_user"
             android:textColor="@color/purple_100"
             app:cornerRadius="0dp" />
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
