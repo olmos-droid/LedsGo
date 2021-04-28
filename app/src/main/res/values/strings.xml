@@ -12,5 +12,8 @@
     <string name="user">Usuari</string>
     <string name="turn_off">Apagar</string>
     <string name="reset">Reiniciar</string>
+    <string name="grups">Grups</string>
+    <string name="groups">Grups</string>
+    <string name="groups_title">GRUPS</string>
 
 </resources>

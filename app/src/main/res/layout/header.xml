@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@color/purple_100_trans"
     android:gravity="bottom|start"
     android:orientation="vertical"
     android:padding="20dp">
@@ -13,8 +12,7 @@
         android:id="@+id/cardView_Header_cardview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/purple_50"
-        app:cardBackgroundColor="@color/purple_50">
+        app:cardBackgroundColor="@android:color/transparent">
 
         <LinearLayout
             android:layout_width="match_parent"
