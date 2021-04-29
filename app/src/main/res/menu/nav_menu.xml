@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_menu_general"
+        android:title="@string/general" />
+    <item
+        android:id="@+id/nav_menu_strips"
+        android:title="@string/strips_title" />
+    <item
+        android:id="@+id/nav_menu_groups"
+        android:title="@string/groups_title" />
+</menu>
