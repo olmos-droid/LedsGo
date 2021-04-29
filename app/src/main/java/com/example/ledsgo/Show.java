@@ -31,9 +31,15 @@ public class Show extends AppCompatActivity {
         groupsFragment = new GroupsFragment();
         stripsFragment = new StripsFragment();
 
+
+
+
+
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                 switch (item.getItemId())
                 {
                     case R.id.nav_menu_general:
@@ -65,4 +71,5 @@ public class Show extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
     }
+
 }

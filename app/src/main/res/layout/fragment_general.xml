@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/purple_100"
     tools:context=".GeneralFragment">
 
     <LinearLayout
@@ -22,9 +23,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/purple_80"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:text="Button"
+                android:text="Pattern 1"
                 app:cornerRadius="0dp" />
 
             <Button
@@ -33,9 +35,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/purple_80"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:text="Button"
+                android:text="Pattern 2"
                 app:cornerRadius="0dp" />
 
             <Button
@@ -44,9 +47,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/purple_80"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:text="Button"
+                android:text="Pattern 3"
                 app:cornerRadius="0dp" />
 
             <Button
@@ -55,9 +59,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/purple_80"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:text="Button"
+                android:text="Pattern 4"
                 app:cornerRadius="0dp" />
         </LinearLayout>
 
@@ -72,11 +77,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/purple_80"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
                 android:insetBottom="0dp"
-                android:text="Button"
+                android:text="Pattern 5"
                 app:cornerRadius="0dp"
                 app:iconPadding="0dp" />
 
@@ -86,11 +92,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/purple_80"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
                 android:insetBottom="0dp"
-                android:text="Button"
+                android:text="Pattern 6"
                 app:cornerRadius="0dp"
                 app:iconPadding="0dp" />
 
@@ -100,11 +107,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/purple_80"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
                 android:insetBottom="0dp"
-                android:text="Button"
+                android:text="Pattern 7"
                 app:cornerRadius="0dp"
                 app:iconPadding="0dp" />
 
@@ -114,11 +122,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/purple_80"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
                 android:insetBottom="0dp"
-                android:text="Button"
+                android:text="Pattern 8"
                 app:cornerRadius="0dp"
                 app:iconPadding="0dp" />
         </LinearLayout>
@@ -132,26 +141,55 @@
                 android:id="@+id/radioButton_general_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/color" />
+                android:text="@string/color"
+                android:textColor="@color/white_50" />
 
             <RadioButton
                 android:id="@+id/radioButton_show_general_white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Blanc" />
+                android:text="Blanc"
+                android:textColor="@color/white_50" />
 
             <RadioButton
                 android:id="@+id/radioButton_show_general_gradient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gradual" />
+                android:text="Gradual"
+                android:textColor="@color/white_50" />
 
             <RadioButton
                 android:id="@+id/radioButton_show_general_lineal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lineal" />
+                android:text="Lineal"
+                android:textColor="@color/white_50" />
         </RadioGroup>
+
+        <com.rtugeek.android.colorseekbar.ColorSeekBar
+            android:id="@+id/colorSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:barHeight="10dp"
+            app:thumbHeight="@android:dimen/notification_large_icon_height"
+            app:showAlphaBar="true"
+            app:colorSeeds="@array/material_colors" />
+
+
+        <TextView
+            android:id="@+id/textView_show_general_speed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/source_code_pro_bold"
+            android:gravity="center"
+            android:text="Speed"
+            android:textColor="@color/white_50"
+            android:textColorHighlight="#FFFFFF" />
+
+        <SeekBar
+            android:id="@+id/seekBar_show_general_speed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </FrameLayout>

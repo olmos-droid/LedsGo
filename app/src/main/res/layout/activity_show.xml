@@ -316,10 +316,17 @@
             android:id="@+id/main_nav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:backgroundTint="@color/black"
+            android:backgroundTintMode="add"
+            android:foregroundGravity="center"
+            android:foregroundTint="#D80E0E"
+            android:foregroundTintMode="add"
+            android:transitionGroup="false"
             app:backgroundTint="@color/black"
             app:itemIconTint="@color/nav_item_color"
             app:itemTextColor="@color/nav_item_color"
+
             app:menu="@menu/nav_menu" />
 
         <FrameLayout
