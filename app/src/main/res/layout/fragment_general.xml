@@ -6,12 +6,152 @@
     android:layout_height="match_parent"
     tools:context=".GeneralFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:background="@color/purple_100"
-         />
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_patertn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Button"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/button_patertn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Button"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/button_patertn3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Button"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/button_patertn4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Button"
+                app:cornerRadius="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_patertn5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:text="Button"
+                app:cornerRadius="0dp"
+                app:iconPadding="0dp" />
+
+            <Button
+                android:id="@+id/button_patertn6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:text="Button"
+                app:cornerRadius="0dp"
+                app:iconPadding="0dp" />
+
+            <Button
+                android:id="@+id/button_patertn7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:text="Button"
+                app:cornerRadius="0dp"
+                app:iconPadding="0dp" />
+
+            <Button
+                android:id="@+id/button_patertn8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:text="Button"
+                app:cornerRadius="0dp"
+                app:iconPadding="0dp" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton_general_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/color" />
+
+            <RadioButton
+                android:id="@+id/radioButton_show_general_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Blanc" />
+
+            <RadioButton
+                android:id="@+id/radioButton_show_general_gradient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gradual" />
+
+            <RadioButton
+                android:id="@+id/radioButton_show_general_lineal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lineal" />
+        </RadioGroup>
+
+    </LinearLayout>
 </FrameLayout>

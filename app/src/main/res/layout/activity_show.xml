@@ -50,9 +50,12 @@
                     android:id="@+id/button_show_strip_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/blue_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     android:text="+"
                     app:cornerRadius="0dp" />
 
@@ -60,17 +63,23 @@
                     android:id="@+id/button_show_strip1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/blue_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/button_show_strip2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/blue_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
             </LinearLayout>
@@ -84,26 +93,35 @@
                     android:id="@+id/button_show_strip3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/blue_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/button_show_strip4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/blue_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/button_show_strip5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/blue_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
             </LinearLayout>
@@ -117,26 +135,35 @@
                     android:id="@+id/button_show_strip6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/blue_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/button_show_strip7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/blue_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/button_show_strip8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/blue_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
             </LinearLayout>
         </LinearLayout>
@@ -166,9 +193,12 @@
                     android:id="@+id/button_show_group_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     android:text="+"
                     app:cornerRadius="0dp" />
 
@@ -176,17 +206,23 @@
                     android:id="@+id/button_show_group1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/button_show_group2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
             </LinearLayout>
@@ -200,26 +236,35 @@
                     android:id="@+id/button_show_group3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/button_show_group4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/button_show_group5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
             </LinearLayout>
@@ -233,26 +278,35 @@
                     android:id="@+id/button_show_group6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/button_show_group7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
 
                 <Button
                     android:id="@+id/button_show_group8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_50"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="0dp" />
             </LinearLayout>
 

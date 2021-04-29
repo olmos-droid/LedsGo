@@ -10,4 +10,5 @@
     <string name="email">Correu electrònic</string>
     <string name="strips_title">TIRAS</string>
     <string name="general">GENERAL</string>
+    <string name="color">Color</string>
 </resources>
