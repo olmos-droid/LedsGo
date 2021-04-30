@@ -55,7 +55,7 @@ public class Tiras extends AppCompatActivity  {
         buttonStrip0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                service.execute(new Scraper(0, registry, testObserver, false));
+                service.execute(new Scraper(0, registry, testObserver));
 
             }
         });

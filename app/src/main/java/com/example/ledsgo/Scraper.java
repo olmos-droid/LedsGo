@@ -16,26 +16,16 @@ public class Scraper implements Runnable {
     int nStrip;
     DeviceRegistry registry;
     TestObserver testObserver;
-    boolean stopthread;
 
-
-//    public Scraper(int nStrip, DeviceRegistry registry, TestObserver testObserver) {
-//        this.nStrip = nStrip;
-//        this.registry = registry;
-//        this.testObserver = testObserver;
-//    }
-
-
-    public Scraper(int nStrip, DeviceRegistry registry, TestObserver testObserver, boolean stopthread) {
+    public Scraper(int nStrip, DeviceRegistry registry, TestObserver testObserver) {
         this.nStrip = nStrip;
         this.registry = registry;
         this.testObserver = testObserver;
-        this.stopthread = stopthread;
     }
 
     @Override
     public void run() {
-        while (!registry.hasChanged() || stopthread)
+        while (!registry.hasChanged())
         {
             registry.setExtraDelay(0);
             registry.setAutoThrottle(true);

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.heroicrobot.dropbit.registry.DeviceRegistry;
+
 public class LogIn extends AppCompatActivity {
 
     Button buttonSignUP, buttonLogIn;
@@ -31,6 +33,7 @@ public class LogIn extends AppCompatActivity {
         buttonLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ConnectPP connectPP = new ConnectPP(new DeviceRegistry(),new TestObserver());
                 Intent intent = new Intent(getApplicationContext(), Show.class);
                 startActivity(intent);
             }

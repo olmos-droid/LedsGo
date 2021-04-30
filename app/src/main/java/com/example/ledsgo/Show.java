@@ -11,6 +11,10 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.heroicrobot.dropbit.registry.DeviceRegistry;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Show extends AppCompatActivity {
     private BottomNavigationView mMainNav;
@@ -19,15 +23,27 @@ public class Show extends AppCompatActivity {
     private GroupsFragment groupsFragment;
     private StripsFragment stripsFragment;
 
+    DeviceRegistry registry = new DeviceRegistry();
+    TestObserver testObserver = new TestObserver();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
 
+        registry.addObserver(testObserver);
+
+        int nCore = Runtime.getRuntime().availableProcessors(); // miramos cuantos procesadores tiene el phone
+        ExecutorService service = Executors.newFixedThreadPool(nCore);
+        service.execute(new ConnectPP(registry, testObserver));
+
+        ExecutorService strip0 = Executors.newFixedThreadPool(1);
+
+
         mMainFrame = findViewById(R.id.main_frame);
         mMainNav = findViewById(R.id.main_nav);
 
-        generalFragment = new GeneralFragment();
+        generalFragment = new GeneralFragment(registry,testObserver,service);
         groupsFragment = new GroupsFragment();
         stripsFragment = new StripsFragment();
 
