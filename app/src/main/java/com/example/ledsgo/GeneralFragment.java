@@ -66,24 +66,8 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                for (Strip strip : strips)
-                {
-                    for (int i = 0; i < strip.getLength(); i++)
-                    {
-                        for (int j = 0; j < 24; j++)
-                        {
-                            strip.setPixel(new Pixel((byte) 0, (byte) 255, (byte) 0), j);
-                            try
-                            {
-                                Thread.sleep(50);
-                            } catch (InterruptedException e)
-                            {
-                                e.printStackTrace();
-                            }
-                            strip.setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
-                        }
-                    }
-                }
+                Scraper scraper = new Scraper(0,registry,testObserver);
+
             }
 
         });
