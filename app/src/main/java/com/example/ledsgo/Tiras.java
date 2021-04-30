@@ -38,7 +38,7 @@ public class Tiras extends AppCompatActivity  {
         buttonStrip1 = findViewById(R.id.button_Strip1);
 
         buttonStop = findViewById(R.id.button_Stop);
-        registry.addObserver(testObserver);
+            registry.addObserver(testObserver);
 
 
         int nCore = Runtime.getRuntime().availableProcessors(); // miramos cuantos procesadores tiene el phone

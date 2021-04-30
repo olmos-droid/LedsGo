@@ -33,7 +33,6 @@ public class LogIn extends AppCompatActivity {
         buttonLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConnectPP connectPP = new ConnectPP(new DeviceRegistry(),new TestObserver());
                 Intent intent = new Intent(getApplicationContext(), Show.class);
                 startActivity(intent);
             }

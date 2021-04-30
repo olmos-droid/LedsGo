@@ -7,49 +7,48 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.heroicrobot.dropbit.devices.pixelpusher.Strip;
 import com.heroicrobot.dropbit.registry.DeviceRegistry;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Show extends AppCompatActivity {
+    private static final String TAG ="Show" ;
+
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
     private GeneralFragment generalFragment;
     private GroupsFragment groupsFragment;
     private StripsFragment stripsFragment;
 
-    DeviceRegistry registry = new DeviceRegistry();
-    TestObserver testObserver = new TestObserver();
+    private DeviceRegistry registry = new DeviceRegistry();
+    private TestObserver testObserver = new TestObserver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
 
-        registry.addObserver(testObserver);
-
-        int nCore = Runtime.getRuntime().availableProcessors(); // miramos cuantos procesadores tiene el phone
-        ExecutorService service = Executors.newFixedThreadPool(nCore);
-        service.execute(new ConnectPP(registry, testObserver));
-
-        ExecutorService strip0 = Executors.newFixedThreadPool(1);
-
-
         mMainFrame = findViewById(R.id.main_frame);
         mMainNav = findViewById(R.id.main_nav);
 
-        generalFragment = new GeneralFragment(registry,testObserver,service);
+        generalFragment = new GeneralFragment(registry, testObserver);
         groupsFragment = new GroupsFragment();
         stripsFragment = new StripsFragment();
 
+        registry.startPushing();
+        registry.setExtraDelay(0);
+        registry.setAutoThrottle(true);
 
-
-
+        List<Strip> strips = registry.getStrips();
+        prepareExitHandler(registry);
 
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -81,11 +80,32 @@ public class Show extends AppCompatActivity {
             }
         });
     }
+
     private void setFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
+    }
+    private void prepareExitHandler(DeviceRegistry registry) {
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+
+            public void run() {
+
+                Log.d(TAG, "run: Shutdown hook running");
+
+                List<Strip> strips = registry.getStrips();
+                for (Strip strip : strips)
+                {
+                    for (int i = 0; i < strip.getLength(); i++)
+                    {
+                        strip.setPixel(0, i);
+                    }
+                }
+
+            }
+        }
+        ));
     }
 
 }

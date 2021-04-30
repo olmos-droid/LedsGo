@@ -6,10 +6,10 @@ import android.util.Log;
 import com.heroicrobot.dropbit.registry.DeviceRegistry;
 
 public class ConnectPP implements Runnable {
-    private static final String TAG = "TAG";
+    private static final String TAG = "ConnectPP";
 
-    DeviceRegistry registry;
-    TestObserver testObserver;
+    private DeviceRegistry registry;
+    private TestObserver testObserver;
 
 
     public ConnectPP(DeviceRegistry registry, TestObserver testObserver) {
