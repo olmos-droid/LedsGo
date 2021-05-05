@@ -165,31 +165,17 @@
                 android:text="Lineal"
                 android:textColor="@color/white_50" />
         </RadioGroup>
-
-        <com.rtugeek.android.colorseekbar.ColorSeekBar
-            android:id="@+id/colorSlider_genereal"
+        <com.divyanshu.colorseekbar.ColorSeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:barHeight="10dp"
-            app:thumbHeight="@android:dimen/notification_large_icon_height"
-            app:showAlphaBar="true"
-            app:colorSeeds="@array/material_colors" />
+            android:id="@+id/seekbar"
+            android:layout_margin="10dp"
+            android:background="@color/white"
 
+            >
 
-        <TextView
-            android:id="@+id/textView_show_general_speed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/source_code_pro_bold"
-            android:gravity="center"
-            android:text="Speed"
-            android:textColor="@color/white_50"
-            android:textColorHighlight="#FFFFFF" />
+        </com.divyanshu.colorseekbar.ColorSeekBar>
 
-        <SeekBar
-            android:id="@+id/seekBar_show_general_speed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </FrameLayout>

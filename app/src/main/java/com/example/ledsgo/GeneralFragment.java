@@ -10,10 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.divyanshu.colorseekbar.ColorSeekBar;
 import com.heroicrobot.dropbit.devices.pixelpusher.Pixel;
 import com.heroicrobot.dropbit.devices.pixelpusher.Strip;
 import com.heroicrobot.dropbit.registry.DeviceRegistry;
-import com.rtugeek.android.colorseekbar.ColorSeekBar;
+
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -24,7 +25,7 @@ public class GeneralFragment extends Fragment {
     public static final String TAG = "GeneralFragment";
     private DeviceRegistry registry;
     private TestObserver testObserver;
-    private ColorSeekBar colorSeekBar;
+    ColorSeekBar colorSeekBar;
 
 
     public GeneralFragment(DeviceRegistry registry, TestObserver testObserver) {
@@ -49,7 +50,8 @@ public class GeneralFragment extends Fragment {
         // Inflate the layout for this fragment
         List<Strip> strips = registry.getStrips();
         View view = inflater.inflate(R.layout.fragment_general, container, false);
-        colorSeekBar = view.findViewById(R.id.colorSlider_genereal);
+
+
         Button btn_preset1 = view.findViewById(R.id.button_general_patertn1);
         Button btn_preset2 = view.findViewById(R.id.button_general_patertn2);
         Button btn_preset3 = view.findViewById(R.id.button_general_patertn3);
@@ -59,15 +61,15 @@ public class GeneralFragment extends Fragment {
         Button btn_preset7 = view.findViewById(R.id.button_general_patertn7);
         Button btn_preset8 = view.findViewById(R.id.button_general_patertn8);
 
-        Log.d(TAG, "onCreateView: " + colorSeekBar.getColors());
+
+        colorSeekBar = view.findViewById(R.id.seekbar);
 
         colorSeekBar.setOnColorChangeListener(new ColorSeekBar.OnColorChangeListener() {
             @Override
-            public void onColorChangeListener(int colorBarPosition, int alphaBarPosition, int color) {
-                Log.d(TAG, "onCreateView: " + colorSeekBar.getColors());
+            public void onColorChangeListener(int i) {
+                Log.d(TAG, "onColorChangeListener: " + i);
             }
         });
-
 
         btn_preset1.setOnClickListener(new View.OnClickListener() {
             @Override

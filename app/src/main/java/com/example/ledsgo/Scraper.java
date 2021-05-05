@@ -36,8 +36,8 @@ public class Scraper implements Runnable {
             Log.d(TAG, "run:================================" + strips.get(0).getLength());
 
 //            ratita_AllLeds(strips);
-            ratita(strips);
-     //       allLeds(strips);
+//            ratita(strips);
+            allLeds(strips);
 
         }
     }
@@ -49,19 +49,17 @@ public class Scraper implements Runnable {
     }
 
     private void allLeds(List<Strip> strips) {
-        for (int i = 0; i <nStrip; i++)
+        for (int j = 0; j < 24; j++)
         {
-            for (int j = 0; j < 24; j++)
+            strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 255), j);
+            try
             {
-                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 255, (byte) 255), j);
-                try
-                {
-                    Thread.sleep(0);
-                } catch (InterruptedException e)
-                {
-                    e.printStackTrace();
-                }
+                Thread.sleep(50);
+            } catch (InterruptedException e)
+            {
+                e.printStackTrace();
             }
+
         }
     }
 
