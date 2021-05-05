@@ -16,6 +16,8 @@ import com.heroicrobot.dropbit.registry.DeviceRegistry;
 import com.rtugeek.android.colorseekbar.ColorSeekBar;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class GeneralFragment extends Fragment {
@@ -38,6 +40,11 @@ public class GeneralFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        registry.addObserver(testObserver);
+        int nCore = Runtime.getRuntime().availableProcessors(); // miramos cuantos procesadores tiene el phone
+        ExecutorService service = Executors.newFixedThreadPool(nCore);
+        service.execute(new ConnectPP(registry, testObserver));
+
 
         // Inflate the layout for this fragment
         List<Strip> strips = registry.getStrips();
@@ -66,7 +73,7 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: genaral pattern 1 ");
-                Scraper scraper = new Scraper(0,registry,testObserver);
+                service.execute(new Scraper(0, registry, testObserver));
 
             }
 
