@@ -1,8 +1,8 @@
 package com.example.ledsgo;
 
+
 import android.util.Log;
 
-import androidx.dynamicanimation.animation.SpringAnimation;
 
 import com.heroicrobot.dropbit.devices.pixelpusher.Pixel;
 import com.heroicrobot.dropbit.devices.pixelpusher.PixelPusher;
@@ -13,6 +13,7 @@ import java.util.List;
 
 public class Scraper implements Runnable {
     public static final String TAG = "Scraper";
+
     int nStrip;
     DeviceRegistry registry;
     TestObserver testObserver;
@@ -51,10 +52,11 @@ public class Scraper implements Runnable {
     private void allLeds(List<Strip> strips) {
         for (int j = 0; j < 24; j++)
         {
-            strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 255), j);
+//            strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 255), j);
+            strips.get(this.nStrip).setPixel(new Pixel((byte) 255, (byte) 0, (byte) 255), j);
             try
             {
-                Thread.sleep(50);
+                Thread.sleep(500);
             } catch (InterruptedException e)
             {
                 e.printStackTrace();

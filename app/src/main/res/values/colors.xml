@@ -35,4 +35,19 @@
         <item>#795548</item>
         <item>#607D8B</item>
     </array>
+
+    <array name="custom_colors">
+
+        <item>#FF0000</item>
+        <item>#00FF00</item>
+        <item>#0000FF</item>
+
+
+
+
+
+
+
+
+    </array>
 </resources>

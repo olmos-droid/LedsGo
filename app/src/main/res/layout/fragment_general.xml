@@ -165,16 +165,19 @@
                 android:text="Lineal"
                 android:textColor="@color/white_50" />
         </RadioGroup>
-        <com.divyanshu.colorseekbar.ColorSeekBar
+
+        <TextView
+            android:id="@+id/textView_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/seekbar"
-            android:layout_margin="10dp"
-            android:background="@color/white"
+            android:text="TextView" />
 
-            >
-
-        </com.divyanshu.colorseekbar.ColorSeekBar>
+        <com.rtugeek.android.colorseekbar.ColorSeekBar
+            android:id="@+id/color_seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:colorSeeds="@array/custom_colors"
+            app:showAlphaBar="true" />
 
 
     </LinearLayout>
