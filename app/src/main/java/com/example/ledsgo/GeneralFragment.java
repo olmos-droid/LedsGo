@@ -65,7 +65,7 @@ public class GeneralFragment extends Fragment {
         btn_preset1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.d(TAG, "onClick: genaral pattern 1 ");
                 Scraper scraper = new Scraper(0,registry,testObserver);
 
             }
