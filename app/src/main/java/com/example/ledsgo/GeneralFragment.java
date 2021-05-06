@@ -51,6 +51,7 @@ public class GeneralFragment extends Fragment {
         ExecutorService service = Executors.newFixedThreadPool(nCore);
         ConnectPP connectPP = new ConnectPP(registry, testObserver);
         service.execute(connectPP);
+        preset = new Scraper(this.registry, this.testObserver, 0);
 
 
         // Inflate the layout for this fragment
@@ -90,8 +91,17 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: has apretat el preset 1");
-                preset = new Scraper(registry, testObserver, 1);
-                service.execute(preset);
+
+                if (preset.getPreset() == 8)
+                {
+                    preset = new Scraper(registry, testObserver, 1);
+                    service.execute(preset);
+
+                } else
+                {
+                    preset.setPreset(1);
+                    service.execute(preset);
+                }
             }
 
         });
@@ -99,8 +109,15 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: genaral pattern 2 ");
-               preset.setPreset(2);
-                service.execute(preset);
+                if (preset.getPreset() == 8)
+                {
+                    preset = new Scraper(registry, testObserver, 2);
+                    service.execute(preset);
+                } else
+                {
+                    preset.setPreset(2);
+                    service.execute(preset);
+                }
             }
         });
         btn_preset3.setOnClickListener(new View.OnClickListener() {
@@ -133,11 +150,21 @@ public class GeneralFragment extends Fragment {
 
             }
         });
+
+        //esste es el boton que quiero que haga el stop
         btn_preset8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: has apretat el preset 8");
-                preset.setPreset(8);
+                if (preset.getPreset() == 8)
+                {
+                    preset = new Scraper(registry, testObserver, 8);
+                    service.execute(preset);
+                } else
+                {
+                    preset.setPreset(8);
+                    service.execute(preset);
+                }
 
             }
         });

@@ -3,7 +3,6 @@ package com.example.ledsgo;
 
 import android.util.Log;
 
-
 import com.heroicrobot.dropbit.devices.pixelpusher.Pixel;
 import com.heroicrobot.dropbit.devices.pixelpusher.PixelPusher;
 import com.heroicrobot.dropbit.devices.pixelpusher.Strip;
@@ -14,6 +13,7 @@ import java.util.List;
 public class Scraper implements Runnable {
     public static final String TAG = "Scraper";
 
+    private volatile boolean done = false;
 
 
     private int nStrip;
@@ -22,26 +22,14 @@ public class Scraper implements Runnable {
     private ColorByte colorByte;
     int preset;
     int speed;
-    private volatile Thread blinker = null;
-    Thread thisThread;
 
-
-    public Scraper(int nStrip, DeviceRegistry registry, TestObserver testObserver) {
-        this.nStrip = nStrip;
-        this.registry = registry;
-        this.testObserver = testObserver;
-    }
-
-    public Scraper(DeviceRegistry registry, TestObserver testObserver) {
-        this.registry = registry;
-        this.testObserver = testObserver;
-    }
 
     public Scraper(DeviceRegistry registry, TestObserver testObserver, int preset) {
+        Log.d(TAG, "Scraper: Constructor");
         this.registry = registry;
         this.testObserver = testObserver;
         this.preset = preset;
-        thisThread = Thread.currentThread();
+
 
     }
 
@@ -54,19 +42,16 @@ public class Scraper implements Runnable {
 
     @Override
     public void run() {
+        List<PixelPusher> pushers = registry.getPushers(0);
+        List<Strip> strips = pushers.get(0).getStrips();
 
 
-        blinker =thisThread;
-        while (!registry.hasChanged() && blinker == thisThread)
+        while (!done)
+
         {
-
-
-            List<PixelPusher> pushers = registry.getPushers(0);
-            List<Strip> strips = pushers.get(0).getStrips();
-            prepareExitHandler(registry);
-
             switch (preset)
             {
+
                 case 1:
                     pattern1(strips);
                     break;
@@ -74,20 +59,98 @@ public class Scraper implements Runnable {
                     pattern2(strips);
                     break;
                 case 8:
+
+                    //intento cambiar a true para que el while pare pero sigue
+
                     pattern8(strips);
+
                     break;
+                default:
+                    break;
+            }
+
+        }
+    }
+
+
+    //  este es el patron que quiero que haga el stop
+
+    void pattern8(List<Strip> strips) {
+
+
+        for (int i = 0; i < strips.size(); i++)
+
+            for (int j = 0; j < 24; j++)
+            {
+                try
+                {
+                    Thread.sleep(0);
+                } catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+
+                strips.get(i).setPixel(0, j);
+
+            }
+        this.setDone(true);
+
+    }
+
+
+    //pinta un pixel de la tira en rojo "ratita"
+    void pattern1(List<Strip> strips) {
+//        for (int i = 0; i < strips.size(); i++)
+        this.setDone(false);
+
+        for (int i = 0; i < 2; i++)
+//        {
+            for (int j = 0; j < 24; j++)
+            {
+                strips.get(i).setPixel(new Pixel((byte) 255, (byte) 0, (byte) 255), j);
+                try
+                {
+                    Thread.sleep(50);
+                } catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+            }
+    }
+
+    //    }
+
+
+    //pinta de azul
+    void pattern2(List<Strip> strips) {
+        this.setDone(false);
+
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 24; j++)
+            {
+                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 255), j);
+                try
+                {
+                    Thread.sleep(50);
+                } catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+
             }
         }
     }
 
-    public void stop() {
-        blinker = null;
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 
-    public static String getTAG() {
-        return TAG;
+    public boolean isDone() {
+        return done;
     }
-
 
     public int getnStrip() {
         return nStrip;
@@ -136,59 +199,6 @@ public class Scraper implements Runnable {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
-
-    private void pattern8(List<Strip> strips) {
-        for (int i = 0; i < 2; i++)
-        {
-            for (int j = 0; j < 2; j++)
-
-            {
-                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
-
-            }
-        }
-
-
-    }
-
-
-    void pattern2(List<Strip> strips) {
-        for (int i = 0; i < 2; i++)
-        {
-            for (int j = 0; j < 24; j++)
-            {
-                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 255, (byte) 255), j);
-                try
-                {
-                    Thread.sleep(100);
-                } catch (InterruptedException e)
-                {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-    }
-
-    private void pattern1(List<Strip> strips) {
-//        for (int i = 0; i < strips.size(); i++)
-        for (int i = 0; i < 2; i++)
-
-//        {
-            for (int j = 0; j < 24; j++)
-            {
-                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 255), j);
-                try
-                {
-                    Thread.sleep(100);
-                } catch (InterruptedException e)
-                {
-                    e.printStackTrace();
-                }
-                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
-            }
-    }
-//    }
 
 
     private void prepareExitHandler(DeviceRegistry registry) {
