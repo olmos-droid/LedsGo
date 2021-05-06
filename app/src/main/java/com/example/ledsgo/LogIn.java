@@ -27,6 +27,7 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SignUp.class);
+
                 startActivity(intent);
             }
         });
@@ -34,6 +35,7 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Show.class);
+                buttonLogIn.setClickable(false);
                 startActivity(intent);
             }
         });

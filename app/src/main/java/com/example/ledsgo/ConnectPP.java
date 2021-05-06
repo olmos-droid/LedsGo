@@ -15,7 +15,7 @@ public class ConnectPP implements Runnable {
     public ConnectPP(DeviceRegistry registry, TestObserver testObserver) {
         this.registry = registry;
         this.testObserver = testObserver;
-        Log.d(TAG, "ConnectPP: Conexio creada");
+
     }
 
     public static String getTAG() {

@@ -43,14 +43,14 @@ public class Show extends AppCompatActivity {
         groupsFragment = new GroupsFragment();
         stripsFragment = new StripsFragment();
 
-        registry.startPushing();
         registry.setExtraDelay(0);
         registry.setAutoThrottle(true);
+        registry.startPushing();
 
         setFragment(generalFragment);
 
-        List<Strip> strips = registry.getStrips();
-        prepareExitHandler(registry);
+//        List<Strip> strips = registry.getStrips();
+//        prepareExitHandler(registry);
 
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -92,11 +92,13 @@ public class Show extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        prepareExitHandler(registry);
         super.onDestroy();
     }
 
     @Override
     protected void onStop() {
+        prepareExitHandler(registry);
         super.onStop();
     }
 

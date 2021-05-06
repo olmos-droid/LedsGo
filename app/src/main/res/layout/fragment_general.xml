@@ -64,6 +64,7 @@
                 android:insetBottom="0dp"
                 android:text="Pattern 4"
                 app:cornerRadius="0dp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -130,6 +131,7 @@
                 android:text="Pattern 8"
                 app:cornerRadius="0dp"
                 app:iconPadding="0dp" />
+
         </LinearLayout>
 
         <RadioGroup
