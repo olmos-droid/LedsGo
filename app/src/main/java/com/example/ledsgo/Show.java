@@ -87,6 +87,21 @@ public class Show extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        prepareExitHandler((registry));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        prepareExitHandler((registry));
+
+
+    }
+
     private void prepareExitHandler(DeviceRegistry registry) {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 

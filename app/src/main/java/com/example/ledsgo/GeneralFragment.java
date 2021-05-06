@@ -1,5 +1,6 @@
 package com.example.ledsgo;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -28,6 +29,7 @@ public class GeneralFragment extends Fragment {
     private TestObserver testObserver;
     ColorSeekBar colorSeekBar;
     TextView textView;
+    byte[] colorRGB = {0,0,0};
 
 
     public GeneralFragment(DeviceRegistry registry, TestObserver testObserver) {
@@ -46,7 +48,8 @@ public class GeneralFragment extends Fragment {
         registry.addObserver(testObserver);
         int nCore = Runtime.getRuntime().availableProcessors(); // miramos cuantos procesadores tiene el phone
         ExecutorService service = Executors.newFixedThreadPool(nCore);
-        service.execute(new ConnectPP(registry, testObserver));
+        ConnectPP connectPP = new ConnectPP(registry,testObserver);
+        service.execute(connectPP);
 
 
         // Inflate the layout for this fragment
@@ -71,18 +74,15 @@ public class GeneralFragment extends Fragment {
             @Override
             public void
             onColorChangeListener(int i, int i1, int i2) {
+                Color color = null;
 
+                int intColor = colorSeekBar.getColor();
+                Log.d(TAG, "onColorChangeListener: " + intColor);
+                color.red(intColor);
+                colorRGB[0]= (byte) color.red(intColor);
+                colorRGB[1]= (byte) color.green(intColor);
+                colorRGB[2]= (byte) color.blue(intColor);
 
-                Log.d(TAG, "onColorChangeListener: " + colorSeekBar.getColorIndexPosition(colorSeekBar.getColor()));
-                Log.d(TAG, "onColorChangeListener: " + colorSeekBar.getColor());
-
-                Log.d(TAG, "onColorChangeListener: " + colorSeekBar.getColorBarValue());
-//                Log.d(TAG, "onColorChangeListener: " + colorSeekBar.get);
-                Log.d(TAG, "onColorChangeListener: "+colorSeekBar.getColorBarPosition());
-
-//                Log.d(TAG, "onColorChangeListener: " + i2);
-//                Log.d(TAG, "onColorChangeListener: " + i1);
-//                Log.d(TAG, "onColorChangeListener: " + i);
 
 
             }
@@ -92,9 +92,8 @@ public class GeneralFragment extends Fragment {
         btn_preset1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: genaral pattern 1 ");
 
-                service.execute(new Scraper(0, registry, testObserver));
+               service.execute(new Scraper( registry, testObserver,1));
 
             }
 
@@ -103,6 +102,9 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
+                Log.d(TAG, "onClick: genaral pattern 2 ");
+                service.execute(new Scraper( registry, testObserver,2));
             }
         });
         btn_preset3.setOnClickListener(new View.OnClickListener() {

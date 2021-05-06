@@ -17,8 +17,30 @@ public class Scraper implements Runnable {
     int nStrip;
     DeviceRegistry registry;
     TestObserver testObserver;
+    ColorByte colorByte;
+    int preset;
+    int speed;
+
 
     public Scraper(int nStrip, DeviceRegistry registry, TestObserver testObserver) {
+        this.nStrip = nStrip;
+        this.registry = registry;
+        this.testObserver = testObserver;
+    }
+
+    public Scraper(DeviceRegistry registry, TestObserver testObserver) {
+        this.registry = registry;
+        this.testObserver = testObserver;
+    }
+
+    public Scraper(DeviceRegistry registry, TestObserver testObserver, int preset) {
+        this.registry = registry;
+        this.testObserver = testObserver;
+        this.preset = preset;
+    }
+
+    public Scraper(int nStrip, DeviceRegistry registry, TestObserver testObserver, ColorByte colorByte) {
+        this.colorByte = colorByte;
         this.nStrip = nStrip;
         this.registry = registry;
         this.testObserver = testObserver;
@@ -36,50 +58,57 @@ public class Scraper implements Runnable {
             prepareExitHandler(registry);
             Log.d(TAG, "run:================================" + strips.get(0).getLength());
 
-//            ratita_AllLeds(strips);
-//            ratita(strips);
-            allLeds(strips);
+            switch (preset)
+            {
+                case 1:
 
+                    allLeds(strips);
+                    break;
+                case 2:
+                    ratita(strips);
+                    break;
+
+
+            }
         }
     }
 
-    private void ratita_AllLeds(List<Strip> strips) {
-        ratita(strips);
-        allLeds(strips);
 
-    }
-
-    private void allLeds(List<Strip> strips) {
-        for (int j = 0; j < 24; j++)
+    void allLeds(List<Strip> strips) {
+        for (int i = 0; i < strips.size(); i++)
         {
-//            strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 255), j);
-            strips.get(this.nStrip).setPixel(new Pixel((byte) 255, (byte) 0, (byte) 255), j);
-            try
+            for (int j = 0; j < 24; j++)
             {
-                Thread.sleep(500);
-            } catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }
+                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 255, (byte) 255), j);
+                try
+                {
+                    Thread.sleep(speed);
+                } catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
 
+            }
         }
     }
 
     private void ratita(List<Strip> strips) {
-        for (int j = 0; j < 24; j++)
+        for (int i = 0; i < strips.size(); i++)
         {
-            strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 255), j);
-            try
+            for (int j = 0; j < 24; j++)
             {
-                Thread.sleep(50);
-            } catch (InterruptedException e)
-            {
-                e.printStackTrace();
+                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 255), j);
+                try
+                {
+                    Thread.sleep(speed);
+                } catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
             }
-            strips.get(this.nStrip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
         }
     }
-
 
     private void prepareExitHandler(DeviceRegistry registry) {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
