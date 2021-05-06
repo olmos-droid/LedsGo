@@ -20,7 +20,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Show extends AppCompatActivity {
-    private static final String TAG ="Show" ;
+    private static final String TAG = "Show";
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -47,13 +47,15 @@ public class Show extends AppCompatActivity {
         registry.setExtraDelay(0);
         registry.setAutoThrottle(true);
 
+        setFragment(generalFragment);
+
         List<Strip> strips = registry.getStrips();
         prepareExitHandler(registry);
 
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Log.d(TAG, "onNavigationItemSelected: cargando por primera vez " + item);
 
                 switch (item.getItemId())
                 {
@@ -91,24 +93,18 @@ public class Show extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        prepareExitHandler((registry));
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        prepareExitHandler((registry));
-
-
     }
 
-    private void prepareExitHandler(DeviceRegistry registry) {
+
+    public void prepareExitHandler(DeviceRegistry registry) {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-
             public void run() {
-
                 Log.d(TAG, "run: Shutdown hook running");
-
                 List<Strip> strips = registry.getStrips();
                 for (Strip strip : strips)
                 {
@@ -117,7 +113,6 @@ public class Show extends AppCompatActivity {
                         strip.setPixel(0, i);
                     }
                 }
-
             }
         }
         ));

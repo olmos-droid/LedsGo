@@ -5,6 +5,7 @@ import java.util.Observable;
 public class ColorByte extends Observable {
     private byte[] color = new byte[2];
 
+
     public ColorByte(byte[] color) {
         this.color = color;
     }
@@ -16,4 +17,6 @@ public class ColorByte extends Observable {
     public void setColor(byte[] color) {
         this.color = color;
     }
+
+
 }

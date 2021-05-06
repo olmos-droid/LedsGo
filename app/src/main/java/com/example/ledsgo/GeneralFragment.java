@@ -27,9 +27,10 @@ public class GeneralFragment extends Fragment {
     public static final String TAG = "GeneralFragment";
     private DeviceRegistry registry;
     private TestObserver testObserver;
-    ColorSeekBar colorSeekBar;
-    TextView textView;
-    byte[] colorRGB = {0,0,0};
+    private ColorSeekBar colorSeekBar;
+    private TextView textView;
+    byte[] colorRGB = {0, 0, 0};
+    private Scraper preset;
 
 
     public GeneralFragment(DeviceRegistry registry, TestObserver testObserver) {
@@ -48,7 +49,7 @@ public class GeneralFragment extends Fragment {
         registry.addObserver(testObserver);
         int nCore = Runtime.getRuntime().availableProcessors(); // miramos cuantos procesadores tiene el phone
         ExecutorService service = Executors.newFixedThreadPool(nCore);
-        ConnectPP connectPP = new ConnectPP(registry,testObserver);
+        ConnectPP connectPP = new ConnectPP(registry, testObserver);
         service.execute(connectPP);
 
 
@@ -70,7 +71,6 @@ public class GeneralFragment extends Fragment {
 
         colorSeekBar = view.findViewById(R.id.color_seek_bar);
         colorSeekBar.setOnColorChangeListener(new ColorSeekBar.OnColorChangeListener() {
-
             @Override
             public void
             onColorChangeListener(int i, int i1, int i2) {
@@ -79,12 +79,9 @@ public class GeneralFragment extends Fragment {
                 int intColor = colorSeekBar.getColor();
                 Log.d(TAG, "onColorChangeListener: " + intColor);
                 color.red(intColor);
-                colorRGB[0]= (byte) color.red(intColor);
-                colorRGB[1]= (byte) color.green(intColor);
-                colorRGB[2]= (byte) color.blue(intColor);
-
-
-
+                colorRGB[0] = (byte) color.red(intColor);
+                colorRGB[1] = (byte) color.green(intColor);
+                colorRGB[2] = (byte) color.blue(intColor);
             }
         });
 
@@ -92,19 +89,18 @@ public class GeneralFragment extends Fragment {
         btn_preset1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-               service.execute(new Scraper( registry, testObserver,1));
-
+                Log.d(TAG, "onClick: has apretat el preset 1");
+                preset = new Scraper(registry, testObserver, 1);
+                service.execute(preset);
             }
 
         });
         btn_preset2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Log.d(TAG, "onClick: genaral pattern 2 ");
-                service.execute(new Scraper( registry, testObserver,2));
+               preset.setPreset(2);
+                service.execute(preset);
             }
         });
         btn_preset3.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +136,8 @@ public class GeneralFragment extends Fragment {
         btn_preset8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "onClick: has apretat el preset 8");
+                preset.setPreset(8);
 
             }
         });
