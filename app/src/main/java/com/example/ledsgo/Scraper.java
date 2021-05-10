@@ -58,6 +58,9 @@ public class Scraper implements Runnable {
                 case 2:
                     pattern2(strips);
                     break;
+                case 3:
+                    pattern3(strips);
+                    break;
                 case 8:
 
                     //intento cambiar a true para que el while pare pero sigue
@@ -121,6 +124,28 @@ public class Scraper implements Runnable {
 
     //    }
 
+    //pinta un pixel de la tira en rojo "ratita" al reves del pattern1
+    void pattern3(List<Strip> strips) {
+//        for (int i = 0; i < strips.size(); i++)
+        this.setDone(false);
+
+        for (int i = 0; i < 2; i++)
+//        {
+            for (int j = 24; j < 0; j--)
+            {
+                strips.get(i).setPixel(new Pixel((byte) 255, (byte) 0, (byte) 255), j);
+                try
+                {
+                    Thread.sleep(50);
+                } catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+            }
+    }
+
+    //    }
 
     //pinta de azul
     void pattern2(List<Strip> strips) {
