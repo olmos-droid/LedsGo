@@ -92,16 +92,10 @@ public class GeneralFragment extends Fragment {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: has apretat el preset 1");
 
-                if (preset.getPreset() == 8)
-                {
-                    preset = new Scraper(registry, testObserver, 1);
-                    service.execute(preset);
 
-                } else
-                {
-                    preset.setPreset(1);
-                    service.execute(preset);
-                }
+                preset.setPreset(1);
+                service.execute(preset);
+
             }
 
         });
@@ -109,22 +103,21 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: genaral pattern 2 ");
-                if (preset.getPreset() == 8)
-                {
-                    preset = new Scraper(registry, testObserver, 2);
-                    service.execute(preset);
-                } else
-                {
-                    preset.setPreset(2);
-                    service.execute(preset);
-                }
+
+                preset.setPreset(2);
+                service.execute(preset);
             }
+
         });
         btn_preset3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                preset.setPreset(3);
+                service.execute(preset);
             }
+
+
         });
         btn_preset4.setOnClickListener(new View.OnClickListener() {
             @Override
