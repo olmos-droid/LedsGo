@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_100">
+
+    <LinearLayout
+        android:layout_width="119dp"
+        android:layout_height="145dp"
+        android:orientation="horizontal"
+        android:paddingTop="48dp"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+        <Button
+            android:id="@+id/button_Perfil_Pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/source_code_pro_black"
+            android:text="@string/save"
+            android:textColor="@color/purple_100" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="118dp"
+        android:layout_height="145dp"
+        android:orientation="horizontal"
+        android:paddingTop="52dp"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <Button
+            android:id="@+id/button_Perfil_Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/source_code_pro_black"
+            android:text="@string/save"
+            android:textColor="@color/purple_100" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="116dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="57dp"
+        android:orientation="horizontal"
+        android:paddingTop="50dp"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <Button
+            android:id="@+id/button_Perfil_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/source_code_pro_black"
+            android:text="@string/save"
+            android:textColor="@color/purple_100" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView_Perfil_fotoPerfil"
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:background="#FFFFFF"
+          />
+
+        <TextView
+            android:id="@+id/textView_Perfil_UserName"
+            android:layout_width="108dp"
+            android:layout_height="40dp"
+            android:background="@color/purple_50"
+            android:gravity="center|top"
+            android:text="TextView"
+            android:textColor="@color/white_50" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="293dp"
+        android:layout_height="557dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/source_code_pro_medium"
+            android:hint="@string/Datos"
+            android:textColorHint="@color/white"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="270dp"
+            android:layout_height="145dp"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:fontFamily="@font/source_code_pro_medium"
+                android:hint="@string/name"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/editText_Perfil_UserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:textColor="@color/white_50"
+                android:textColorHint="@color/white_50" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="270dp"
+            android:layout_height="145dp"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:fontFamily="@font/source_code_pro_medium"
+                android:hint="@string/email"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/editText_Perfil_Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textPersonName"
+                android:textColor="@color/white_50"
+                android:textColorHint="@color/white_50" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="270dp"
+            android:layout_height="145dp"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:fontFamily="@font/source_code_pro_medium"
+                android:hint="@string/password"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/editText_Perfil_Pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/password"
+                android:inputType="textWebPassword"
+                android:textColor="@color/white_50"
+                android:textColorHint="@color/white_50" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
