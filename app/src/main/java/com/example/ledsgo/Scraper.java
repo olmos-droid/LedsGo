@@ -16,7 +16,6 @@ public class Scraper implements Runnable {
     private volatile boolean done = false;
 
 
-
     private DeviceRegistry registry;
     private TestObserver testObserver;
     private ColorLed colorLed;
@@ -29,13 +28,12 @@ public class Scraper implements Runnable {
         this.registry = registry;
         this.testObserver = testObserver;
         this.preset = preset;
-
-
+        this.colorLed = colorLed;
     }
 
     public Scraper(DeviceRegistry registry, TestObserver testObserver, ColorLed colorLed) {
         this.colorLed = colorLed;
-                this.registry = registry;
+        this.registry = registry;
         this.testObserver = testObserver;
     }
 
@@ -102,10 +100,7 @@ public class Scraper implements Runnable {
 
 
     /**
-     *
-     * @param strips
-     * Pinta un pixel i luego lo borra, hace un efecto "ratita"
-     *
+     * @param strips Pinta un pixel i luego lo borra, hace un efecto "ratita"
      */
     void pattern1(List<Strip> strips) {
         this.setDone(false);
@@ -126,7 +121,6 @@ public class Scraper implements Runnable {
     }
 
 
-
     //pinta un pixel de la tira en rojo "ratita" al reves del pattern1
     void pattern3(List<Strip> strips) {
 
@@ -145,7 +139,7 @@ public class Scraper implements Runnable {
                 strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 255), j);
                 try
                 {
-                    Thread.sleep(50);
+                    Thread.sleep(speed);
                 } catch (InterruptedException e)
                 {
                     e.printStackTrace();

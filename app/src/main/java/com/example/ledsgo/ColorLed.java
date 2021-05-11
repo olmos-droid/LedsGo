@@ -4,36 +4,49 @@ import java.util.Observable;
 
 public class ColorLed {
 
-    int red,green,blue;
+    private byte red,green,blue;
 
 
-    public ColorLed(int red, int green, int blue) {
+    public ColorLed() {
+    }
+
+    public ColorLed(byte red, byte green, byte blue) {
         this.red = red;
         this.green = green;
         this.blue = blue;
     }
 
-    public int getRed() {
+    public byte getRed() {
         return red;
     }
 
-    public void setRed(int red) {
+    public void setRed(byte red) {
         this.red = red;
     }
 
-    public int getGreen() {
+    public byte getGreen() {
         return green;
     }
 
-    public void setGreen(int green) {
+    public void setGreen(byte green) {
         this.green = green;
     }
 
-    public int getBlue() {
+    public byte getBlue() {
         return blue;
     }
 
-    public void setBlue(int blue) {
+    public void setBlue(byte blue) {
         this.blue = blue;
+    }
+
+
+    @Override
+    public String toString() {
+        return "\nColorLed{" +
+                "red=" + red +
+                ", green=" + green +
+                ", blue=" + blue +
+                '}';
     }
 }
