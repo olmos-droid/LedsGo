@@ -16,12 +16,12 @@ public class Scraper implements Runnable {
     private volatile boolean done = false;
 
 
-    private int nStrip;
+
     private DeviceRegistry registry;
     private TestObserver testObserver;
-    private ColorByte colorByte;
-    int preset;
-    int speed;
+    private ColorLed colorLed;
+    private int preset;
+    private int speed;
 
 
     public Scraper(DeviceRegistry registry, TestObserver testObserver, int preset) {
@@ -33,15 +33,16 @@ public class Scraper implements Runnable {
 
     }
 
-    public Scraper(int nStrip, DeviceRegistry registry, TestObserver testObserver, ColorByte colorByte) {
-        this.colorByte = colorByte;
-        this.nStrip = nStrip;
-        this.registry = registry;
+    public Scraper(DeviceRegistry registry, TestObserver testObserver, ColorLed colorLed) {
+        this.colorLed = colorLed;
+                this.registry = registry;
         this.testObserver = testObserver;
     }
 
     @Override
     public void run() {
+
+        // todo yo intentaria meterlo en el contrsuctor y cuando el PP estuviera conectado(testobserver.hastrip)
         List<PixelPusher> pushers = registry.getPushers(0);
         List<Strip> strips = pushers.get(0).getStrips();
 
@@ -64,10 +65,9 @@ public class Scraper implements Runnable {
                 case 8:
 
                     //intento cambiar a true para que el while pare pero sigue
-
                     pattern8(strips);
-
                     break;
+
                 default:
                     break;
             }
@@ -80,6 +80,7 @@ public class Scraper implements Runnable {
 
     void pattern8(List<Strip> strips) {
 
+        this.setDone(true);
 
         for (int i = 0; i < strips.size(); i++)
 
@@ -87,7 +88,7 @@ public class Scraper implements Runnable {
             {
                 try
                 {
-                    Thread.sleep(0);
+                    Thread.sleep(speed);
                 } catch (InterruptedException e)
                 {
                     e.printStackTrace();
@@ -96,24 +97,26 @@ public class Scraper implements Runnable {
                 strips.get(i).setPixel(0, j);
 
             }
-        this.setDone(true);
 
     }
 
 
-    //pinta un pixel de la tira en rojo "ratita"
+    /**
+     *
+     * @param strips
+     * Pinta un pixel i luego lo borra, hace un efecto "ratita"
+     *
+     */
     void pattern1(List<Strip> strips) {
-//        for (int i = 0; i < strips.size(); i++)
         this.setDone(false);
 
-        for (int i = 0; i < 2; i++)
-//        {
+        for (int i = 0; i < strips.size(); i++)
             for (int j = 0; j < 24; j++)
             {
                 strips.get(i).setPixel(new Pixel((byte) 255, (byte) 0, (byte) 255), j);
                 try
                 {
-                    Thread.sleep(50);
+                    Thread.sleep(speed);
                 } catch (InterruptedException e)
                 {
                     e.printStackTrace();
@@ -122,27 +125,11 @@ public class Scraper implements Runnable {
             }
     }
 
-    //    }
+
 
     //pinta un pixel de la tira en rojo "ratita" al reves del pattern1
     void pattern3(List<Strip> strips) {
-//        for (int i = 0; i < strips.size(); i++)
-        this.setDone(false);
 
-        for (int i = 0; i < 2; i++)
-//        {
-            for (int j = 24; j < 0; j--)
-            {
-                strips.get(i).setPixel(new Pixel((byte) 255, (byte) 0, (byte) 255), j);
-                try
-                {
-                    Thread.sleep(50);
-                } catch (InterruptedException e)
-                {
-                    e.printStackTrace();
-                }
-                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
-            }
     }
 
     //    }
@@ -151,7 +138,7 @@ public class Scraper implements Runnable {
     void pattern2(List<Strip> strips) {
         this.setDone(false);
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 1; i++)
         {
             for (int j = 0; j < 24; j++)
             {
@@ -177,14 +164,6 @@ public class Scraper implements Runnable {
         return done;
     }
 
-    public int getnStrip() {
-        return nStrip;
-    }
-
-    public void setnStrip(int nStrip) {
-        this.nStrip = nStrip;
-    }
-
     public DeviceRegistry getRegistry() {
         return registry;
     }
@@ -201,12 +180,12 @@ public class Scraper implements Runnable {
         this.testObserver = testObserver;
     }
 
-    public ColorByte getColorByte() {
-        return colorByte;
+    public ColorLed getColorByte() {
+        return colorLed;
     }
 
-    public void setColorByte(ColorByte colorByte) {
-        this.colorByte = colorByte;
+    public void setColorByte(ColorLed colorLed) {
+        this.colorLed = colorLed;
     }
 
     public int getPreset() {

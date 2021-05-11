@@ -83,6 +83,8 @@ public class GeneralFragment extends Fragment {
                 colorRGB[0] = (byte) color.red(intColor);
                 colorRGB[1] = (byte) color.green(intColor);
                 colorRGB[2] = (byte) color.blue(intColor);
+
+
             }
         });
 
@@ -91,8 +93,6 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: has apretat el preset 1");
-
-
                 preset.setPreset(1);
                 service.execute(preset);
 
@@ -149,15 +149,11 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: has apretat el preset 8");
-                if (preset.getPreset() == 8)
-                {
-                    preset = new Scraper(registry, testObserver, 8);
+
+//                    preset = new Scraper(registry, testObserver, 8);
+                preset.setPreset(8);
                     service.execute(preset);
-                } else
-                {
-                    preset.setPreset(8);
-                    service.execute(preset);
-                }
+
 
             }
         });
