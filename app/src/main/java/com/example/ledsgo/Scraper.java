@@ -23,13 +23,18 @@ public class Scraper implements Runnable {
     private int speed;
 
 
-    public Scraper(DeviceRegistry registry, TestObserver testObserver, int preset) {
-        Log.d(TAG, "Scraper: Constructor");
+
+
+    public Scraper(DeviceRegistry registry, TestObserver testObserver, int preset, int speed,ColorLed colorLed) {
         this.registry = registry;
         this.testObserver = testObserver;
         this.preset = preset;
         this.colorLed = colorLed;
+
+
     }
+
+
 
     public Scraper(DeviceRegistry registry, TestObserver testObserver, ColorLed colorLed) {
         this.colorLed = colorLed;
@@ -86,7 +91,7 @@ public class Scraper implements Runnable {
             {
                 try
                 {
-                    Thread.sleep(speed);
+                    Thread.sleep(this.getSpeed());
                 } catch (InterruptedException e)
                 {
                     e.printStackTrace();
@@ -105,18 +110,21 @@ public class Scraper implements Runnable {
     void pattern1(List<Strip> strips) {
         this.setDone(false);
 
-        for (int i = 0; i < strips.size(); i++)
+        for (int i = 0; i < 2; i++)
+
             for (int j = 0; j < 24; j++)
             {
-                strips.get(i).setPixel(new Pixel((byte) 255, (byte) 0, (byte) 255), j);
                 try
                 {
-                    Thread.sleep(speed);
+                    strips.get(i).setPixel(new Pixel(colorLed.getRed(),colorLed.getGreen(),colorLed.getBlue()), j);
+                    Thread.sleep(50);
+                    strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+
+
                 } catch (InterruptedException e)
                 {
                     e.printStackTrace();
                 }
-                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
             }
     }
 
@@ -130,23 +138,37 @@ public class Scraper implements Runnable {
 
     //pinta de azul
     void pattern2(List<Strip> strips) {
+
+
+
         this.setDone(false);
 
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < strips.size(); i++)
         {
             for (int j = 0; j < 24; j++)
             {
-                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 255), j);
-                try
-                {
-                    Thread.sleep(speed);
-                } catch (InterruptedException e)
-                {
-                    e.printStackTrace();
-                }
+
+                strips.get(i).setPixel(new Pixel(colorLed.getRed(),colorLed.getGreen(),colorLed.getBlue()), j);
+
+//                try
+//                {
+//                    Thread.sleep(this.getSpeed());
+//                } catch (InterruptedException e)
+//                {
+//                    e.printStackTrace();
+//                }
 
             }
         }
+    }
+
+
+    public ColorLed getColorLed() {
+        return colorLed;
+    }
+
+    public void setColorLed(ColorLed colorLed) {
+        this.colorLed = colorLed;
     }
 
 
