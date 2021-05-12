@@ -67,6 +67,7 @@ public class GeneralFragment extends Fragment {
 
         colorSeekBar = view.findViewById(R.id.color_seek_bar);
 
+
         Button btn_preset1 = view.findViewById(R.id.button_general_patertn1);
         Button btn_preset2 = view.findViewById(R.id.button_general_patertn2);
         Button btn_preset3 = view.findViewById(R.id.button_general_patertn3);
@@ -78,7 +79,7 @@ public class GeneralFragment extends Fragment {
 
         textView = view.findViewById(R.id.textView_color);
 
-
+        //todo intentarpasar las cosas a HSL  mirarse el color util de android developers
         colorSeekBar.setOnColorChangeListener(new ColorSeekBar.OnColorChangeListener() {
             @Override
             public void
@@ -86,6 +87,12 @@ public class GeneralFragment extends Fragment {
                 Color color = null;
 
                 int intColor = colorSeekBar.getColor();
+                int intIntensidad = colorSeekBar.getAlphaValue();
+                Log.d(TAG, "onColorChangeListener: intensidad " + intIntensidad);
+                int intIntensidadBarPosaition = colorSeekBar.getAlphaBarPosition();
+                Log.d(TAG, "onColorChangeListener: bar position " + intIntensidadBarPosaition);
+                int intIntensidadAlphavalue = colorSeekBar.getAlphaValue();
+                Log.d(TAG, "onColorChangeListener: intensidadAlphavalue" + intIntensidadAlphavalue);
                 Log.d(TAG, "onColorChangeListener: " + intColor);
 
                 Log.d(TAG, "onColorChangeListener: red " + color.red(intColor));
@@ -93,15 +100,13 @@ public class GeneralFragment extends Fragment {
                 Log.d(TAG, "onColorChangeListener: blue  " + color.blue(intColor));
 
                 //importante los de tipo byte no coincide con los tipo int , es decir un int red = 250 no es lo mismo que un byte = 255
-//
-//                colorRGB[0] = (byte) color.red(intColor);
-//                colorRGB[1] = (byte) color.green(intColor);
-//                colorRGB[2] = (byte) color.blue(intColor);
 
 
-                colorLed.setRed((byte) color.red(intColor));
-                colorLed.setGreen((byte) color.green(intColor));
-                colorLed.setBlue((byte) color.blue(intColor));
+
+
+                colorLed.setRed((byte) (color.red(intColor)* intIntensidad / 255));
+                colorLed.setGreen((byte) (color.green(intColor)*  intIntensidad / 255));
+                colorLed.setBlue((byte) (color.blue(intColor)* intIntensidad / 255));
 
 
             }

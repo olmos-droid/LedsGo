@@ -1,10 +1,13 @@
 package com.example.ledsgo;
 
+import android.graphics.Color;
+
 import java.util.Observable;
 
 public class ColorLed {
 
     private byte red,green,blue;
+
 
 
     public ColorLed() {
