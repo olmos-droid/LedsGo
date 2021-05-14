@@ -13,7 +13,7 @@ import java.util.List;
 public class Scraper implements Runnable {
     public static final String TAG = "Scraper";
 
-    private volatile boolean done = false;
+    private volatile boolean stoplighting = false;
 
 
     private DeviceRegistry registry;
@@ -30,39 +30,30 @@ public class Scraper implements Runnable {
         this.testObserver = testObserver;
         this.preset = preset;
         this.colorLed = colorLed;
-
-
-    }
-
-
-
-    public Scraper(DeviceRegistry registry, TestObserver testObserver, ColorLed colorLed) {
-        this.colorLed = colorLed;
-        this.registry = registry;
-        this.testObserver = testObserver;
+        this.speed = speed;
     }
 
     @Override
     public void run() {
-
-        // todo yo intentaria meterlo en el contrsuctor y cuando el PP estuviera conectado(testobserver.hastrip)
+while(true) {
+    // todo yo intentaria meterlo en el contrsuctor y cuando el PP estuviera conectado(testobserver.hastrip)
+    if (testObserver.isHasStrips()) {
         List<PixelPusher> pushers = registry.getPushers(0);
         List<Strip> strips = pushers.get(0).getStrips();
-
-
-        while (!done)
-
-        {
-            switch (preset)
-            {
+        int frameLimit= registry.getFrameLimit();
+        Log.d(TAG, "Scraper: frameLimit "+frameLimit);
+        if (!stoplighting) {
+            switch (preset) {
 
                 case 1:
                     pattern1(strips);
                     break;
                 case 2:
+//                    registry.setFrameLimit(speed);
                     pattern2(strips);
                     break;
                 case 3:
+//                    registry.setFrameLimit(speed);
                     pattern3(strips);
                     break;
                 case 8:
@@ -76,14 +67,18 @@ public class Scraper implements Runnable {
             }
 
         }
+    } else {
+        Log.d(TAG, "Scraper: no strips ");
+        Log.d(TAG, registry.toString());
+    }
+}
     }
 
 
     //  este es el patron que quiero que haga el stop
 
     void pattern8(List<Strip> strips) {
-
-        this.setDone(true);
+        Log.d(TAG, "Scraper: pattern8 ");
 
         for (int i = 0; i < strips.size(); i++)
 
@@ -101,6 +96,7 @@ public class Scraper implements Runnable {
 
             }
 
+        this.setStoplighting(true);
     }
 
 
@@ -108,7 +104,7 @@ public class Scraper implements Runnable {
      * @param strips Pinta un pixel i luego lo borra, hace un efecto "ratita"
      */
     void pattern1(List<Strip> strips) {
-        this.setDone(false);
+        Log.d(TAG, "Scraper: pattern1 ");
 
         for (int i = 0; i < 2; i++)
 
@@ -117,7 +113,7 @@ public class Scraper implements Runnable {
                 try
                 {
                     strips.get(i).setPixel(new Pixel(colorLed.getRed(),colorLed.getGreen(),colorLed.getBlue()), j);
-                    Thread.sleep(50);
+                    Thread.sleep(speed*3);
                     strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
 
 
@@ -138,28 +134,21 @@ public class Scraper implements Runnable {
 
     //pinta de azul
     void pattern2(List<Strip> strips) {
-
-
-
-        this.setDone(false);
+        Log.d(TAG, "Scraper: pattern2 ");
 
         for (int i = 0; i < strips.size(); i++)
-        {
-            for (int j = 0; j < 24; j++)
-            {
 
-                strips.get(i).setPixel(new Pixel(colorLed.getRed(),colorLed.getGreen(),colorLed.getBlue()), j);
+            for (int j = 0; j < 24; j++) {
 
-//                try
-//                {
-//                    Thread.sleep(this.getSpeed());
-//                } catch (InterruptedException e)
-//                {
-//                    e.printStackTrace();
-//                }
+                strips.get(i).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
+
+                try {
+                    Thread.sleep(this.getSpeed());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
             }
-        }
     }
 
 
@@ -172,28 +161,12 @@ public class Scraper implements Runnable {
     }
 
 
-    public void setDone(boolean done) {
-        this.done = done;
+    public void setStoplighting(boolean stoplighting) {
+        this.stoplighting = stoplighting;
     }
 
-    public boolean isDone() {
-        return done;
-    }
-
-    public DeviceRegistry getRegistry() {
-        return registry;
-    }
-
-    public void setRegistry(DeviceRegistry registry) {
-        this.registry = registry;
-    }
-
-    public TestObserver getTestObserver() {
-        return testObserver;
-    }
-
-    public void setTestObserver(TestObserver testObserver) {
-        this.testObserver = testObserver;
+    public boolean isStoplighting() {
+        return stoplighting;
     }
 
     public ColorLed getColorByte() {
@@ -221,25 +194,4 @@ public class Scraper implements Runnable {
     }
 
 
-    private void prepareExitHandler(DeviceRegistry registry) {
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-
-            public void run() {
-
-                Log.d(TAG, "run: Shutdown hook running");
-
-                List<Strip> strips = registry.getStrips();
-//                for (Strip strip : strips)
-
-//                {
-                for (int i = 0; i < 1; i++)
-                {
-                    strips.get(i).setPixel(0, i);
-                }
-            }
-
-//            }
-        }
-        ));
-    }
 }

@@ -33,15 +33,15 @@ public class Tiras extends AppCompatActivity  {
         buttonStrip1 = findViewById(R.id.button_Strip1);
 
         buttonStop = findViewById(R.id.button_Stop);
-            registry.addObserver(testObserver);
-
-
-        int nCore = Runtime.getRuntime().availableProcessors(); // miramos cuantos procesadores tiene el phone
-        ExecutorService service = Executors.newFixedThreadPool(nCore);
-        service.execute(new ConnectPP(registry, testObserver));
-
-
-        ExecutorService strip0 = Executors.newFixedThreadPool(1);
+//            registry.addObserver(testObserver);
+//
+//
+//        int nCore = Runtime.getRuntime().availableProcessors(); // miramos cuantos procesadores tiene el phone
+//        ExecutorService service = Executors.newFixedThreadPool(nCore);
+//        service.execute(new ConnectPP(registry, testObserver));
+//
+//
+//        ExecutorService strip0 = Executors.newFixedThreadPool(1);
 
 
 

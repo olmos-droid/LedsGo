@@ -25,44 +25,38 @@ import java.util.concurrent.Executors;
 
 public class GeneralFragment extends Fragment {
     public static final String TAG = "GeneralFragment";
-    private DeviceRegistry registry;
-    private TestObserver testObserver;
     private ColorSeekBar colorSeekBar;
     private TextView textView;
     byte[] colorRGB = {0, 0, 0};
     private Scraper preset;
-    private int speed = 100;
+    private int speed = 10;
     ColorLed colorLed = new ColorLed();
     ExecutorService service;
+    private final DeviceRegistry registry;
+    private final TestObserver testObserver;
 
-    public GeneralFragment(DeviceRegistry registry, TestObserver testObserver) {
-        this.registry = registry;
-        this.testObserver = testObserver;
-        List<Strip> strips = registry.getStrips();
+    public GeneralFragment() {
+        service = Executors.newFixedThreadPool(1);
+        registry = new DeviceRegistry();
+        testObserver = new TestObserver();
 
+        registry.addObserver(testObserver);
 
-        // Required empty public constructor
+        registry.setExtraDelay(0);
+        registry.setAutoThrottle(true);
+        registry.setAntiLog(true);
+        registry.startPushing();
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        registry.addObserver(testObserver);
 
-        int nCore = Runtime.getRuntime().availableProcessors(); // miramos cuantos procesadores tiene el phone
-         service = Executors.newFixedThreadPool(nCore);
-
-
-        ConnectPP connectPP = new ConnectPP(registry, testObserver);
-        service.execute(connectPP);
+        preset = new Scraper(registry, testObserver, 0, speed, colorLed);
+        service.execute(preset);
 
 
-        preset = new Scraper(this.registry, this.testObserver, 0,speed,colorLed);
-
-
-        // Inflate the layout for this fragment
-        List<Strip> strips = registry.getStrips();
         View view = inflater.inflate(R.layout.fragment_general, container, false);
 
         colorSeekBar = view.findViewById(R.id.color_seek_bar);
@@ -88,25 +82,23 @@ public class GeneralFragment extends Fragment {
 
                 int intColor = colorSeekBar.getColor();
                 int intIntensidad = colorSeekBar.getAlphaValue();
-                Log.d(TAG, "onColorChangeListener: intensidad " + intIntensidad);
+//                Log.d(TAG, "onColorChangeListener: intensidad " + intIntensidad);
                 int intIntensidadBarPosaition = colorSeekBar.getAlphaBarPosition();
-                Log.d(TAG, "onColorChangeListener: bar position " + intIntensidadBarPosaition);
+//                Log.d(TAG, "onColorChangeListener: bar position " + intIntensidadBarPosaition);
                 int intIntensidadAlphavalue = colorSeekBar.getAlphaValue();
-                Log.d(TAG, "onColorChangeListener: intensidadAlphavalue" + intIntensidadAlphavalue);
-                Log.d(TAG, "onColorChangeListener: " + intColor);
-
-                Log.d(TAG, "onColorChangeListener: red " + color.red(intColor));
-                Log.d(TAG, "onColorChangeListener: gree " + color.green(intColor));
-                Log.d(TAG, "onColorChangeListener: blue  " + color.blue(intColor));
+//                Log.d(TAG, "onColorChangeListener: intensidadAlphavalue" + intIntensidadAlphavalue);
+//                Log.d(TAG, "onColorChangeListener: " + intColor);
+//
+//                Log.d(TAG, "onColorChangeListener: red " + color.red(intColor));
+//                Log.d(TAG, "onColorChangeListener: gree " + color.green(intColor));
+//                Log.d(TAG, "onColorChangeListener: blue  " + color.blue(intColor));
 
                 //importante los de tipo byte no coincide con los tipo int , es decir un int red = 250 no es lo mismo que un byte = 255
 
 
-
-
-                colorLed.setRed((byte) (color.red(intColor)* intIntensidad / 255));
-                colorLed.setGreen((byte) (color.green(intColor)*  intIntensidad / 255));
-                colorLed.setBlue((byte) (color.blue(intColor)* intIntensidad / 255));
+                colorLed.setRed((byte) (color.red(intColor) * intIntensidad / 255));
+                colorLed.setGreen((byte) (color.green(intColor) * intIntensidad / 255));
+                colorLed.setBlue((byte) (color.blue(intColor) * intIntensidad / 255));
 
 
             }
@@ -117,16 +109,11 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: has apretat el preset 1");
+                preset.setStoplighting(false);
+                if (preset.getPreset() != 1) {
 
-                if (preset.getPreset() == 8)
-                {
-                    preset = new Scraper(registry, testObserver, 1, speed,colorLed);
-                    service.execute(preset);
-
-                } else
-                {
                     preset.setPreset(1);
-                    service.execute(preset);
+
                 }
             }
 
@@ -135,30 +122,17 @@ public class GeneralFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: genaral pattern 2 ");
-                if (preset.getPreset() == 8)
-                {
-                    preset = new Scraper(registry, testObserver, 2, speed,colorLed);
-                    service.execute(preset);
-                } else
-                {
+                preset.setStoplighting(false);
+                if (preset.getPreset() != 2) {
+
                     preset.setPreset(2);
-                    service.execute(preset);
                 }
+
             }
         });
         btn_preset3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: genaral pattern 3 ");
-                if (preset.getPreset() == 8)
-                {
-                    preset = new Scraper(registry, testObserver, 3, speed,colorLed);
-                    service.execute(preset);
-                } else
-                {
-                    preset.setPreset(3);
-                    service.execute(preset);
-                }
 
             }
         });
@@ -191,26 +165,22 @@ public class GeneralFragment extends Fragment {
         btn_preset8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Log.d(TAG, "onClick: has apretat el preset 8");
-                if (preset.getPreset() == 8)
-                {
-                    preset = new Scraper(registry, testObserver, 8,speed,colorLed);
-                    service.execute(preset);
-                } else
-                {
+                if (preset.getPreset() != 8) {
                     preset.setPreset(8);
-                    service.execute(preset);
                 }
+
 
             }
         });
         return view;
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        preset = new Scraper(registry, testObserver, 8,speed,colorLed);
-        service.execute(preset);
-    }
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        preset = new Scraper(registry, testObserver, 8,speed,colorLed);
+//        service.execute(preset);
+//    }
 }

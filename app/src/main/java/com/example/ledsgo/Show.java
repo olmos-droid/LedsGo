@@ -28,8 +28,6 @@ public class Show extends AppCompatActivity {
     private GroupsFragment groupsFragment;
     private StripsFragment stripsFragment;
 
-    private DeviceRegistry registry = new DeviceRegistry();
-    private TestObserver testObserver = new TestObserver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +37,11 @@ public class Show extends AppCompatActivity {
         mMainFrame = findViewById(R.id.main_frame);
         mMainNav = findViewById(R.id.main_nav);
 
-        generalFragment = new GeneralFragment(registry, testObserver);
+        generalFragment = new GeneralFragment();
         groupsFragment = new GroupsFragment();
         stripsFragment = new StripsFragment();
 
-        registry.setExtraDelay(0);
-        registry.setAutoThrottle(true);
-        registry.startPushing();
+
 
         setFragment(generalFragment);
 
@@ -55,7 +51,7 @@ public class Show extends AppCompatActivity {
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Log.d(TAG, "onNavigationItemSelected: cargando por primera vez " + item);
+//                Log.d(TAG, "onNavigationItemSelected: cargando por primera vez " + item);
 
                 switch (item.getItemId())
                 {
@@ -90,34 +86,7 @@ public class Show extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    @Override
-    protected void onDestroy() {
-        prepareExitHandler(registry);
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onStop() {
-        prepareExitHandler(registry);
-        super.onStop();
-    }
 
 
-    public void prepareExitHandler(DeviceRegistry registry) {
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            public void run() {
-                Log.d(TAG, "run: Shutdown hook running");
-                List<Strip> strips = registry.getStrips();
-                for (Strip strip : strips)
-                {
-                    for (int i = 0; i < strip.getLength(); i++)
-                    {
-                        strip.setPixel(0, i);
-                    }
-                }
-            }
-        }
-        ));
-    }
 
 }
