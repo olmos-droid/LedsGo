@@ -7,47 +7,38 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.heroicrobot.dropbit.registry.DeviceRegistry;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-
+/**
+ *
+ */
 public class Tiras extends AppCompatActivity  {
+    /**
+     * we use this static final to debug in console
+     */
     private static final String TAG = "Tiras";
 
-    Button buttonStrip0;
     Button buttonStrip1;
+    Button buttonStrip2;
+    Button buttonStrip3;
+    Button buttonStrip4;
+    Button buttonStrip5;
+    Button buttonStrip6;
+    Button buttonStrip7;
     Button buttonStop;
-
-    DeviceRegistry registry = new DeviceRegistry();
-    TestObserver testObserver = new TestObserver();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tiras);
 
-        buttonStrip0 = findViewById(R.id.button_Strip0);
+        //hooks
         buttonStrip1 = findViewById(R.id.button_Strip1);
-
+        buttonStrip2 = findViewById(R.id.button_Strip2);
+        buttonStrip3 = findViewById(R.id.button_Strip3);
+        buttonStrip4 = findViewById(R.id.button_Strip4);
+//        buttonStrip5 = findViewById(R.id.button_Strip5);
+//        buttonStrip6 = findViewById(R.id.button_Strip6);
+//        buttonStrip7 = findViewById(R.id.button_Strip7);
         buttonStop = findViewById(R.id.button_Stop);
-            registry.addObserver(testObserver);
-
-
-        int nCore = Runtime.getRuntime().availableProcessors(); // miramos cuantos procesadores tiene el phone
-        ExecutorService service = Executors.newFixedThreadPool(nCore);
-        service.execute(new ConnectPP(registry, testObserver));
-
-
-        ExecutorService strip0 = Executors.newFixedThreadPool(1);
-
-
-
-
-
-
     }
 
 }

@@ -10,15 +10,23 @@ import android.view.ViewGroup;
 
 
 public class StripsFragment extends Fragment {
-
-       public StripsFragment() {
-        // Required empty public constructor
+    /**
+     * Required empty public constructor
+     */
+    public StripsFragment() {
     }
 
+    /**
+     * Required empty public constructor
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_strips, container, false);
     }
 }

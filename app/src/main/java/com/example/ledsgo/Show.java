@@ -7,18 +7,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.heroicrobot.dropbit.devices.pixelpusher.Strip;
-import com.heroicrobot.dropbit.registry.DeviceRegistry;
 
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
+/**
+ * Class
+ */
 public class Show extends AppCompatActivity {
     private static final String TAG = "Show";
 
@@ -28,34 +26,79 @@ public class Show extends AppCompatActivity {
     private GroupsFragment groupsFragment;
     private StripsFragment stripsFragment;
 
-    private DeviceRegistry registry = new DeviceRegistry();
-    private TestObserver testObserver = new TestObserver();
+    //Buttons add strips
+    private Button button_show_strip_add;
+    private Button button_show_strip1;
+    private Button button_show_strip2;
+    private Button button_show_strip3;
+    private Button button_show_strip4;
+    private Button button_show_strip5;
+    private Button button_show_strip6;
+    private Button button_show_strip7;
+    private Button button_show_strip8;
+
+    //Buttons add groups
+    private Button button_show_group_add;
+    private Button button_show_group1;
+    private Button button_show_group2;
+    private Button button_show_group3;
+    private Button button_show_group4;
+    private Button button_show_group5;
+    private Button button_show_group6;
+    private Button button_show_group7;
+    private Button button_show_group8;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
 
+
+
+
+        button_show_strip_add = findViewById(R.id.button_show_strip_add);
+        button_show_strip1 = findViewById(R.id.button_show_strip1);
+        button_show_strip2 = findViewById(R.id.button_show_strip2);
+        button_show_strip3 = findViewById(R.id.button_show_strip3);
+        button_show_strip4 = findViewById(R.id.button_show_strip4);
+        button_show_strip5 = findViewById(R.id.button_show_strip5);
+        button_show_strip6 = findViewById(R.id.button_show_strip6);
+        button_show_strip7 = findViewById(R.id.button_show_strip7);
+        button_show_strip8 = findViewById(R.id.button_show_strip8);
+
+
+
+        button_show_group_add = findViewById(R.id.button_show_group_add);
+        button_show_group1 = findViewById(R.id.button_show_group1);
+        button_show_group2 = findViewById(R.id.button_show_group2);
+        button_show_group3 = findViewById(R.id.button_show_group3);
+        button_show_group4 = findViewById(R.id.button_show_group4);
+        button_show_group5 = findViewById(R.id.button_show_group5);
+        button_show_group6 = findViewById(R.id.button_show_group6);
+        button_show_group7 = findViewById(R.id.button_show_group7);
+        button_show_group8 = findViewById(R.id.button_show_group8);
+
+
+
+
         mMainFrame = findViewById(R.id.main_frame);
         mMainNav = findViewById(R.id.main_nav);
 
-        generalFragment = new GeneralFragment(registry, testObserver);
+        generalFragment = new GeneralFragment();
         groupsFragment = new GroupsFragment();
         stripsFragment = new StripsFragment();
 
-        registry.setExtraDelay(0);
-        registry.setAutoThrottle(true);
-        registry.startPushing();
+        //registry.setExtraDelay(0);
+
 
         setFragment(generalFragment);
 
-//        List<Strip> strips = registry.getStrips();
-//        prepareExitHandler(registry);
 
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Log.d(TAG, "onNavigationItemSelected: cargando por primera vez " + item);
+                //        Log.d(TAG, "onNavigationItemSelected: cargando por primera vez " + item);
 
                 switch (item.getItemId())
                 {
@@ -78,11 +121,13 @@ public class Show extends AppCompatActivity {
                     default:
                         return false;
                 }
-
             }
         });
     }
 
+    /**
+     * @param fragment
+     */
     private void setFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -90,34 +135,5 @@ public class Show extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    @Override
-    protected void onDestroy() {
-        prepareExitHandler(registry);
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onStop() {
-        prepareExitHandler(registry);
-        super.onStop();
-    }
-
-
-    public void prepareExitHandler(DeviceRegistry registry) {
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            public void run() {
-                Log.d(TAG, "run: Shutdown hook running");
-                List<Strip> strips = registry.getStrips();
-                for (Strip strip : strips)
-                {
-                    for (int i = 0; i < strip.getLength(); i++)
-                    {
-                        strip.setPixel(0, i);
-                    }
-                }
-            }
-        }
-        ));
-    }
 
 }

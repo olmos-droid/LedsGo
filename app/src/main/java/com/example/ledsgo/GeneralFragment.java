@@ -12,57 +12,51 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-
-import com.heroicrobot.dropbit.devices.pixelpusher.Strip;
 import com.heroicrobot.dropbit.registry.DeviceRegistry;
 import com.rtugeek.android.colorseekbar.ColorSeekBar;
 
-
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
+/**
+ *
+ */
 public class GeneralFragment extends Fragment {
     public static final String TAG = "GeneralFragment";
-    private DeviceRegistry registry;
-    private TestObserver testObserver;
     private ColorSeekBar colorSeekBar;
     private TextView textView;
     byte[] colorRGB = {0, 0, 0};
     private Scraper preset;
-    private int speed = 100;
-    ColorLed colorLed = new ColorLed();
-    ExecutorService service;
-
-    public GeneralFragment(DeviceRegistry registry, TestObserver testObserver) {
-        this.registry = registry;
-        this.testObserver = testObserver;
-        List<Strip> strips = registry.getStrips();
+    private int speed = 10;
+    private ColorLed colorLed = new ColorLed();
+    private ExecutorService service;
+    private DeviceRegistry registry;
+    private TestObserver testObserver;
 
 
-        // Required empty public constructor
+    /**
+     *
+     */
+    public GeneralFragment() {
+        service = Executors.newFixedThreadPool(4);
+        registry = new DeviceRegistry();
+        testObserver = new TestObserver();
+
+        registry.addObserver(testObserver);
+
+        registry.setExtraDelay(0);
+        registry.setAutoThrottle(true);
+        registry.setAntiLog(true);
+        registry.startPushing();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        registry.addObserver(testObserver);
 
-        int nCore = Runtime.getRuntime().availableProcessors(); // miramos cuantos procesadores tiene el phone
-         service = Executors.newFixedThreadPool(nCore);
+        preset = new Scraper(registry, testObserver, 0, speed, colorLed);
+        service.execute(preset);
 
-
-        ConnectPP connectPP = new ConnectPP(registry, testObserver);
-        service.execute(connectPP);
-
-
-        preset = new Scraper(this.registry, this.testObserver, 0,speed,colorLed);
-
-
-        // Inflate the layout for this fragment
-        List<Strip> strips = registry.getStrips();
         View view = inflater.inflate(R.layout.fragment_general, container, false);
 
         colorSeekBar = view.findViewById(R.id.color_seek_bar);
@@ -81,6 +75,12 @@ public class GeneralFragment extends Fragment {
 
         //todo intentarpasar las cosas a HSL  mirarse el color util de android developers
         colorSeekBar.setOnColorChangeListener(new ColorSeekBar.OnColorChangeListener() {
+            /**
+             *
+             * @param i
+             * @param i1
+             * @param i2
+             */
             @Override
             public void
             onColorChangeListener(int i, int i1, int i2) {
@@ -88,27 +88,13 @@ public class GeneralFragment extends Fragment {
 
                 int intColor = colorSeekBar.getColor();
                 int intIntensidad = colorSeekBar.getAlphaValue();
-                Log.d(TAG, "onColorChangeListener: intensidad " + intIntensidad);
+
                 int intIntensidadBarPosaition = colorSeekBar.getAlphaBarPosition();
-                Log.d(TAG, "onColorChangeListener: bar position " + intIntensidadBarPosaition);
                 int intIntensidadAlphavalue = colorSeekBar.getAlphaValue();
-                Log.d(TAG, "onColorChangeListener: intensidadAlphavalue" + intIntensidadAlphavalue);
-                Log.d(TAG, "onColorChangeListener: " + intColor);
 
-                Log.d(TAG, "onColorChangeListener: red " + color.red(intColor));
-                Log.d(TAG, "onColorChangeListener: gree " + color.green(intColor));
-                Log.d(TAG, "onColorChangeListener: blue  " + color.blue(intColor));
-
-                //importante los de tipo byte no coincide con los tipo int , es decir un int red = 250 no es lo mismo que un byte = 255
-
-
-
-
-                colorLed.setRed((byte) (color.red(intColor)* intIntensidad / 255));
-                colorLed.setGreen((byte) (color.green(intColor)*  intIntensidad / 255));
-                colorLed.setBlue((byte) (color.blue(intColor)* intIntensidad / 255));
-
-
+                colorLed.setRed((byte) (color.red(intColor) * intIntensidad / 255));
+                colorLed.setGreen((byte) (color.green(intColor) * intIntensidad / 255));
+                colorLed.setBlue((byte) (color.blue(intColor) * intIntensidad / 255));
             }
         });
 
@@ -116,101 +102,70 @@ public class GeneralFragment extends Fragment {
         btn_preset1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: has apretat el preset 1");
-
-                if (preset.getPreset() == 8)
-                {
-                    preset = new Scraper(registry, testObserver, 1, speed,colorLed);
-                    service.execute(preset);
-
-                } else
-                {
-                    preset.setPreset(1);
-                    service.execute(preset);
-                }
+                preset.setStopLighting(false);
+                isThisPreset(1);
             }
 
         });
         btn_preset2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: genaral pattern 2 ");
-                if (preset.getPreset() == 8)
-                {
-                    preset = new Scraper(registry, testObserver, 2, speed,colorLed);
-                    service.execute(preset);
-                } else
-                {
-                    preset.setPreset(2);
-                    service.execute(preset);
-                }
+                isThisPreset(2);
             }
         });
         btn_preset3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: genaral pattern 3 ");
-                if (preset.getPreset() == 8)
-                {
-                    preset = new Scraper(registry, testObserver, 3, speed,colorLed);
-                    service.execute(preset);
-                } else
-                {
-                    preset.setPreset(3);
-                    service.execute(preset);
-                }
-
+                isThisPreset(3);
             }
         });
         btn_preset4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                isThisPreset(4);
             }
         });
         btn_preset5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isThisPreset(5);
 
             }
         });
         btn_preset6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isThisPreset(6);
 
             }
         });
         btn_preset7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                isThisPreset(7);
             }
         });
 
-        //esste es el boton que quiero que haga el stop
         btn_preset8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: has apretat el preset 8");
-                if (preset.getPreset() == 8)
-                {
-                    preset = new Scraper(registry, testObserver, 8,speed,colorLed);
-                    service.execute(preset);
-                } else
-                {
-                    preset.setPreset(8);
-                    service.execute(preset);
-                }
-
+                isThisPreset(8);
             }
         });
         return view;
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        preset = new Scraper(registry, testObserver, 8,speed,colorLed);
-        service.execute(preset);
+    /**
+     * @param preset
+     */
+    private void isThisPreset(int preset) {
+        this.preset.setStopLighting(false);
+
+        if (this.preset.getPreset() != preset)
+        {
+            this.preset.setPreset(preset);
+        }
     }
+
+
 }
