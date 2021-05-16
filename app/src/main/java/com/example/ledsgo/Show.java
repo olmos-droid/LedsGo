@@ -1,6 +1,7 @@
 package com.example.ledsgo;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,7 +9,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,6 +22,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
  */
 public class Show extends AppCompatActivity {
     private static final String TAG = "Show";
+
+
+    /**
+     * dialog builder
+     */
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private EditText stripID, numTotalLeds;
+    private Button btn_addStrip, btn_cancel;
+
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -55,8 +68,6 @@ public class Show extends AppCompatActivity {
         setContentView(R.layout.activity_show);
 
 
-
-
         button_show_strip_add = findViewById(R.id.button_show_strip_add);
         button_show_strip1 = findViewById(R.id.button_show_strip1);
         button_show_strip2 = findViewById(R.id.button_show_strip2);
@@ -66,9 +77,15 @@ public class Show extends AppCompatActivity {
         button_show_strip6 = findViewById(R.id.button_show_strip6);
         button_show_strip7 = findViewById(R.id.button_show_strip7);
         button_show_strip8 = findViewById(R.id.button_show_strip8);
+        stripID = findViewById(R.id.editTextNumberStrip);
+        numTotalLeds = findViewById(R.id.editTextNumberTotalLeds);
+        btn_addStrip = findViewById(R.id.button_Add_strip);
+        btn_cancel = findViewById(R.id.buttonDialogCancel);
 
 
-
+/**
+ *hooks dels groups
+ */
         button_show_group_add = findViewById(R.id.button_show_group_add);
         button_show_group1 = findViewById(R.id.button_show_group1);
         button_show_group2 = findViewById(R.id.button_show_group2);
@@ -80,8 +97,6 @@ public class Show extends AppCompatActivity {
         button_show_group8 = findViewById(R.id.button_show_group8);
 
 
-
-
         mMainFrame = findViewById(R.id.main_frame);
         mMainNav = findViewById(R.id.main_nav);
 
@@ -90,6 +105,13 @@ public class Show extends AppCompatActivity {
         stripsFragment = new StripsFragment();
 
         //registry.setExtraDelay(0);
+
+        button_show_strip_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNewStripDialog();
+            }
+        });
 
 
         setFragment(generalFragment);
@@ -133,6 +155,31 @@ public class Show extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
+    }
+
+
+    public void createNewStripDialog() {
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View contactViewPopUP = getLayoutInflater().inflate(R.layout.popup, null);
+
+
+        dialogBuilder.setView(contactViewPopUP);
+        dialog = dialogBuilder.create();
+        dialog.show();
+        btn_addStrip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+
     }
 
 

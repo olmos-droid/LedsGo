@@ -40,9 +40,8 @@ public class Scraper implements Runnable {
             if (testObserver.isHasStrips())
             {
                 List<PixelPusher> pushers = registry.getPushers(0);
-                List<Strip> strips = pushers.get(0).getStrips();
+                List<Strip> strips = registry.getStrips();
                 int frameLimit = registry.getFrameLimit();
-                Log.d(TAG, "Scraper: frameLimit " + frameLimit);
 
 
                 if (!stopLighting)
@@ -94,7 +93,7 @@ public class Scraper implements Runnable {
      */
     void pattern1(List<Strip> strips) {
         for (int i = 0; i < strips.size(); i++)
-            for (int j = 0; j < 24; j++)
+            for (int j = 0; j < strips.get(i).getLength(); j++)
             {
                 try
                 {
@@ -160,7 +159,7 @@ public class Scraper implements Runnable {
     }
     void pattern6(List<Strip> strips) {
         for (int i = 0; i < strips.size(); i++)
-            for (int j = 24; j < 0; j--)
+            for (int j = strips.size(); j < 0; j--)
             {
                 strips.get(i).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
                 strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
@@ -185,7 +184,7 @@ public class Scraper implements Runnable {
     void pattern8(List<Strip> strips) {
 
         for (int i = 0; i < strips.size(); i++)
-            for (int j = 0; j < 24; j++)
+            for (int j = 0; j < strips.get(i).getLength(); j++)
             {
                 strips.get(i).setPixel(0, j);
             }

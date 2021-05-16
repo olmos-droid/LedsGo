@@ -35,9 +35,9 @@ public class Tiras extends AppCompatActivity  {
         buttonStrip2 = findViewById(R.id.button_Strip2);
         buttonStrip3 = findViewById(R.id.button_Strip3);
         buttonStrip4 = findViewById(R.id.button_Strip4);
-//        buttonStrip5 = findViewById(R.id.button_Strip5);
-//        buttonStrip6 = findViewById(R.id.button_Strip6);
-//        buttonStrip7 = findViewById(R.id.button_Strip7);
+        buttonStrip5 = findViewById(R.id.);
+        buttonStrip6 = findViewById(R.id.button_Strip6);
+        buttonStrip7 = findViewById(R.id.button_Strip7);
         buttonStop = findViewById(R.id.button_Stop);
     }
 
