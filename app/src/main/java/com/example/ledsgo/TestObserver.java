@@ -28,7 +28,7 @@ public class TestObserver implements Observer {
 
     /**
      *
-     * @return si el pixer pusher tiene "tireas de leds" --> Strips
+     * @return si el pixer pusher tiene "tiras de leds" --> Strips
      */
     public boolean isHasStrips() {
         return hasStrips;

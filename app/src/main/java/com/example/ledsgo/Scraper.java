@@ -173,9 +173,6 @@ public class Scraper implements Runnable {
                 strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
             }
     }
-
-
-
     /**
      * paint all pixels black
      *
