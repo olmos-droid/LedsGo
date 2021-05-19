@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_100"
+    tools:context=".GeneralFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_general_patertn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/blue_50"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Pattern 1"
+                android:textColor="@color/white"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/button_general_patertn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/blue_50"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Pattern 2"
+                android:textColor="@color/white"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/button_general_patertn3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/blue_50"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Pattern 3"
+                android:textColor="@color/white"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/button_general_patertn4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/blue_50"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Pattern 4"
+                android:textColor="@color/white"
+                app:cornerRadius="0dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_general_patertn5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/blue_50"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:text="Pattern 5"
+                android:textColor="@color/white"
+                app:cornerRadius="0dp"
+                app:iconPadding="0dp" />
+
+            <Button
+                android:id="@+id/button_general_patertn6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/blue_50"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:text="Pattern 6"
+                android:textColor="@color/white"
+                app:cornerRadius="0dp"
+                app:iconPadding="0dp" />
+
+            <Button
+                android:id="@+id/button_general_patertn7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/blue_50"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:text="Pattern 7"
+                android:textColor="@color/white"
+                app:cornerRadius="0dp"
+                app:iconPadding="0dp" />
+
+            <Button
+                android:id="@+id/button_general_patertn8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/blue_50"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:text="Pattern 8"
+                android:textColor="@color/white"
+                app:cornerRadius="0dp"
+                app:iconPadding="0dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="@color/white" />
+
+        <com.rtugeek.android.colorseekbar.ColorSeekBar
+            android:id="@+id/color_seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:colorSeeds="@array/custom_colors"
+            app:showAlphaBar="true"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speed: "
+                android:textColor="@color/white" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</FrameLayout>

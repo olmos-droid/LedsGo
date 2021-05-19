@@ -71,15 +71,15 @@ public class ReportErrors extends AppCompatActivity {
         buttonSendError.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(ReportErrors.this);
+                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(com.example.ledsgo.ReportErrors.this);
 
                 stringEmail = editTextEmail.getText().toString();
                 stringReport = editTextError.getText().toString();
-                Errors error = new Errors(stringEmail, stringReport);
+               com.example.ledsgo.Errors error = new com.example.ledsgo.Errors(stringEmail, stringReport);
 
 
                 if (ComprobarEmail(stringEmail)) {
-                    Toast.makeText(ReportErrors.this, "Error enviat", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(com.example.ledsgo.ReportErrors.this, "Error enviat", Toast.LENGTH_SHORT).show();
                     mDatabase.child("Report_errors").push().setValue(error);
                     new SendEmail("Ledsgoescolatreball@gmail.com", "ledsgoescola").execute(
                             new SendEmail.Mail("Ledsgoescolatreball@gmail.com", "Ledsgoescolatreball@gmail.com", "Reportar error", "El usuario: "+stringEmail+" quiere reportar un error.\nError: "+stringReport)

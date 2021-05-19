@@ -1,7 +1,6 @@
 package com.example.merda;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -37,7 +35,7 @@ public class SignUp extends AppCompatActivity {
     private Button buttonSignUp, buttonComprobar, buttonReenviar;
     private String stringname, stringEmail, stringPassword, stringCountry,stringComprobarpass;
     private DatabaseReference mDatabase;
-    private ArrayList<Users> arraylistUserBBDD = new ArrayList<>();
+    private ArrayList<com.example.ledsgo.Users> arraylistUserBBDD = new ArrayList<>();
     private ArrayList<String> arraylistUserComprobarEmail = new ArrayList<>();
     private String stringGeneratedString;
 
@@ -92,7 +90,7 @@ public class SignUp extends AppCompatActivity {
 
                         arraylistUserComprobarEmail.add(email);
                     }
-                    Toast.makeText(SignUp.this, "datachanged", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(com.example.ledsgo.SignUp.this, "datachanged", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -106,7 +104,7 @@ public class SignUp extends AppCompatActivity {
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(SignUp.this);
+                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(com.example.ledsgo.SignUp.this);
                 stringname = String.valueOf(editTextName.getText());
                 stringEmail = String.valueOf(editTextEmail.getText());
                 stringPassword = String.valueOf(editTextPassword.getText());
@@ -133,7 +131,7 @@ public class SignUp extends AppCompatActivity {
                         if (emailequals) {
 
                             if (stringCountry.equals("country")) {
-                                Toast.makeText(SignUp.this, "Selecciona un pais", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(com.example.ledsgo.SignUp.this, "Selecciona un pais", Toast.LENGTH_SHORT).show();
                             } else {
 
 
@@ -205,13 +203,13 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println("Aixo si que entra");
                 if (editTextComprobarEmail.getText().toString().equals(stringGeneratedString)) {
-                    Users user = new Users(stringname, stringEmail, stringPassword, stringCountry);
+                    com.example.ledsgo.Users user = new com.example.ledsgo.Users(stringname, stringEmail, stringPassword, stringCountry);
 
                     arraylistUserBBDD.add(user);
                     mDatabase.child("Usuarios").push().setValue(user);
 
 
-                    Intent intent = new Intent(SignUp.this, LogIn.class);
+                    Intent intent = new Intent(com.example.ledsgo.SignUp.this, com.example.ledsgo.LogIn.class);
                     startActivity(intent);
                 }
             }

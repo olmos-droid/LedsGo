@@ -9,9 +9,6 @@
             android:id="@+id/menuResetPP"
             android:title="@string/reset" />
         <item
-            android:id="@+id/menuPatrones"
-            android:title="@string/patrones" />
-        <item
             android:id="@+id/menuRepError"
             android:title="@string/error" />
         <item

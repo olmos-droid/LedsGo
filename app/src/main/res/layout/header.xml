@@ -17,6 +17,7 @@
         app:cardBackgroundColor="@color/purple_50">
 
         <LinearLayout
+            android:id="@+id/LinearLayout_Header_Perfil"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -25,7 +26,7 @@
                 android:id="@+id/imageView_Header_User"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@drawable/ic_baseline_person_24" />
 
             <TextView
                 android:id="@+id/textView_Header_username"

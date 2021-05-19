@@ -28,6 +28,12 @@
     <string name="New_Pass">New Password</string>
     <string name="Confirm_NewPass">Confirm New Password</string>
     <string name="Save_NewPass">Save New Password</string>
+    <string name="GeneralFrag">General</string>
+    <string name="GroupsFrag">Groups</string>
+    <string name="StripsFrag">Strips</string>
+    <string name="groups_title">Groups</string>
+    <string name="color">Color</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <array name="Paises">
         <item>Paises</item>
         <item>Afganistán</item>
@@ -226,4 +232,5 @@
         <item>Zimbabue</item>
         <item>Vietnam</item>
     </array>
+
 </resources>

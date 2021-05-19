@@ -33,17 +33,17 @@ public class ForgotPass extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (editTextConfirmNewPass.getText().toString().isEmpty()&&editTextNewPassword.getText().toString().isEmpty()) {
-                    Toast.makeText(ForgotPass.this, "esta tot buit", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(com.example.ledsgo.ForgotPass.this, "esta tot buit", Toast.LENGTH_SHORT).show();
                 } else {
                     if (editTextConfirmNewPass.getText().toString().equals(editTextNewPassword.getText().toString())) {
                         String id=getIntent().getStringExtra("id");
                         String name=getIntent().getStringExtra("name");
                         String email=getIntent().getStringExtra("email");
                         String country=getIntent().getStringExtra("country");
-                        Users users=new Users(name,email,editTextNewPassword.getText().toString(),country);
+                        com.example.ledsgo.Users users=new com.example.ledsgo.Users(name,email,editTextNewPassword.getText().toString(),country);
                         mDatabase.child("Usuarios").child(id).setValue(users);
 
-                        startActivity(new Intent(getApplicationContext(),LogIn.class));
+                        startActivity(new Intent(getApplicationContext(), com.example.ledsgo.LogIn.class));
                     }
 
 

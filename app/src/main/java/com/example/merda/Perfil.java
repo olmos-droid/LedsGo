@@ -20,7 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.ByteArrayOutputStream;
-import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,7 +30,7 @@ public class Perfil extends AppCompatActivity {
     private EditText editTextUserName, editTextEmail, editTextPass;
     private Button buttonSaveUser, buttonSaveEmail, buttonSavePass;
     private DatabaseReference mDatabase;
-    private ArrayList<Users> arraylistUser = new ArrayList<>();
+    private ArrayList<com.example.ledsgo.Users> arraylistUser = new ArrayList<>();
     private String datos,email,name,country,pass,ID;
     private ImageView imageViewUser;
     private static final int PICK_IMAGE = 100;
@@ -85,7 +84,7 @@ public class Perfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 datos = editTextUserName.getText().toString();
-                Users users = new Users();
+                com.example.ledsgo.Users users = new com.example.ledsgo.Users();
                 users.setName(datos);
                 users.setEmail(editTextEmail.getText().toString());
                 users.setPassword(editTextPass.getText().toString());
@@ -107,13 +106,16 @@ public class Perfil extends AppCompatActivity {
                 datos = editTextEmail.getText().toString();
                 boolean validuser = isValid(datos, regex);
                 if (validuser == true) {
-                    Users users = new Users();
+                    com.example.ledsgo.Users users = new com.example.ledsgo.Users();
                     users.setName(editTextUserName.getText().toString());
                     users.setEmail(datos);
                     users.setPassword(editTextPass.getText().toString());
                     users.setCountry(country);
                     mDatabase.child("Usuarios").child(ID).setValue(users);
                     textViewUserName.setText(editTextUserName.getText());
+                    editor.putString("myEmail",datos);
+                    editor.commit();
+
                 }
             }
         });
@@ -123,13 +125,17 @@ public class Perfil extends AppCompatActivity {
 
                 datos = editTextPass.getText().toString();
                 if (datos.length() > 4) {
-                    Users users = new Users();
+                    com.example.ledsgo.Users users = new com.example.ledsgo.Users();
                     users.setName(editTextUserName.getText().toString());
                     users.setEmail(editTextEmail.getText().toString());
                     users.setPassword(datos);
                     users.setCountry(country);
                     mDatabase.child("Usuarios").child(ID).setValue(users);
                     textViewUserName.setText(editTextUserName.getText());
+                    editor.putString("myPass",datos);
+                    editor.commit();
+
+
 
                 }
             }
@@ -155,7 +161,7 @@ public class Perfil extends AppCompatActivity {
         extras.putParcelable("imagebitmap", image);
         String stringUserNameUpdate=editTextUserName.getText().toString();
         extras2.putString("user",stringUserNameUpdate);
-        Intent intent= new Intent(getApplicationContext(),Show.class);
+        Intent intent= new Intent(getApplicationContext(), com.example.ledsgo.Show.class);
         intent.putExtras(extras);
         intent.putExtras(extras2);
         startActivity(intent);

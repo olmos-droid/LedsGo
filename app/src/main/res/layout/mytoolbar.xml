@@ -5,4 +5,5 @@
     android:layout_height="wrap_content"
     android:background="@color/purple_100"
     android:elevation="4dp"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"></androidx.appcompat.widget.Toolbar>
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:navigationIcon="@drawable/ic_baseline_menu_24"></androidx.appcompat.widget.Toolbar>

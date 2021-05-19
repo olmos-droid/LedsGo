@@ -1,17 +1,37 @@
 package com.example.merda;
 
-import android.os.Bundle;
+public class Tira {
+    String numtira, numleds;
 
-import androidx.appcompat.app.AppCompatActivity;
+    public Tira() {
+    }
 
-public class Tira extends AppCompatActivity {
+    public Tira(String numtira, String numleds) {
+        this.numtira = numtira;
+        this.numleds = numleds;
+    }
+
+    public String getNumtira() {
+        return numtira;
+    }
+
+    public void setNumtira(String numtira) {
+        this.numtira = numtira;
+    }
+
+    public String getNumleds() {
+        return numleds;
+    }
+
+    public void setNumleds(String numleds) {
+        this.numleds = numleds;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tira);
-
-
-
+    public String toString() {
+        return "Tira{" +
+                "numtira='" + numtira + '\'' +
+                ", numleds='" + numleds + '\'' +
+                '}';
     }
 }
