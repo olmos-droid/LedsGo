@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +25,8 @@ public class GeneralFragment extends Fragment {
     private ColorSeekBar colorSeekBar;
     private TextView textView;
     byte[] colorRGB = {0, 0, 0};
-    private Scraper preset;
+    private Scraper strip0;
+    private Scraper strip1;
 
     private ColorLed colorLed = new ColorLed();
     private SeekBar speed;
@@ -63,8 +63,10 @@ public class GeneralFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_general, container, false);
         speed = view.findViewById(R.id.seekBarSpeed);
-        preset = new Scraper(registry, testObserver, 0, speed, colorLed, 0);
-        service.execute(preset);
+        strip0 = new Scraper(registry, testObserver, 0, speed, colorLed, 0);
+        service.execute(strip0);
+        strip1 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
+        service.execute(strip1);
 
         colorSeekBar = view.findViewById(R.id.color_seek_bar);
 
@@ -84,7 +86,8 @@ public class GeneralFragment extends Fragment {
         speed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-               preset.setSpeed(progress);
+               strip0.setSpeed(progress);
+               strip1.setSpeed(progress);
 
             }
 
@@ -130,54 +133,64 @@ public class GeneralFragment extends Fragment {
         btn_preset1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preset.setStopLighting(false);
-                isThisPreset(1);
+                strip0.setStopLighting(false);
+                strip1.setStopLighting(false);
+                isThisPreset(1,strip0);
+                isThisPreset(1,strip1);
             }
 
         });
         btn_preset2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(2);
+                isThisPreset(2,strip0);
+                isThisPreset(2,strip1);
             }
         });
         btn_preset3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(3);
+                isThisPreset(3,strip0);
+                isThisPreset(3,strip1);
             }
         });
         btn_preset4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(4);
+                isThisPreset(4,strip0);
+                isThisPreset(4,strip1);
             }
         });
         btn_preset5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(5);
+                isThisPreset(5,strip0);
+                isThisPreset(5,strip1);
 
             }
         });
         btn_preset6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(6);
+                isThisPreset(6,strip0);
+                isThisPreset(6,strip1);
+
 
             }
         });
         btn_preset7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(7);
+                isThisPreset(7,strip0);
+                isThisPreset(7,strip1);
             }
         });
 
         btn_preset8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(8);
+                isThisPreset(8,strip0);
+                isThisPreset(8,strip1);
             }
         });
         return view;
@@ -185,12 +198,13 @@ public class GeneralFragment extends Fragment {
 
     /**
      * @param preset
+     * @param strip
      */
-    private void isThisPreset(int preset) {
-        this.preset.setStopLighting(false);
+    private void isThisPreset(int preset, Scraper strip) {
+        strip.setStopLighting(false);
 
-        if (this.preset.getPreset() != preset) {
-            this.preset.setPreset(preset);
+        if (strip.getPreset() != preset) {
+            strip.setPreset(preset);
         }
     }
 
