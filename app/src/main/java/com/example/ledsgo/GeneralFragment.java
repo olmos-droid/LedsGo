@@ -38,7 +38,7 @@ public class GeneralFragment extends Fragment {
      *
      */
     public GeneralFragment() {
-        service = Executors.newFixedThreadPool(4);
+        service = Executors.newFixedThreadPool(8);
         registry = new DeviceRegistry();
         testObserver = new TestObserver();
 
