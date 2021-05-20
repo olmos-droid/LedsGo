@@ -10,13 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.heroicrobot.dropbit.registry.DeviceRegistry;
 import com.rtugeek.android.colorseekbar.ColorSeekBar;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  *
@@ -27,37 +27,44 @@ public class GeneralFragment extends Fragment {
     private TextView textView;
     byte[] colorRGB = {0, 0, 0};
     private Scraper preset;
-    private int speed = 10;
+
     private ColorLed colorLed = new ColorLed();
-    private ExecutorService service;
+    private SeekBar speed;
+
+
     private DeviceRegistry registry;
     private TestObserver testObserver;
+    private ExecutorService service;
+
+//    private Scraper scraperStrip1;
+//    private Scraper scraperStrip2;
+//    private Scraper scraperStrip3;
+//    private Scraper scraperStrip4;
+//    private Scraper scraperStrip5;
+//    private Scraper scraperStrip6;
+//    private Scraper scraperStrip7;
+//    private Scraper scraperStrip8;
 
 
     /**
      *
      */
-    public GeneralFragment() {
-        service = Executors.newFixedThreadPool(8);
-        registry = new DeviceRegistry();
-        testObserver = new TestObserver();
-
-        registry.addObserver(testObserver);
-
-        registry.setExtraDelay(0);
-        registry.setAutoThrottle(true);
-        registry.setAntiLog(true);
-        registry.startPushing();
+    public GeneralFragment(DeviceRegistry registry, TestObserver testObserver, ExecutorService service) {
+        this.registry = registry;
+        this.testObserver = testObserver;
+        this.service = service;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        preset = new Scraper(registry, testObserver, 0, speed, colorLed);
-        service.execute(preset);
+
 
         View view = inflater.inflate(R.layout.fragment_general, container, false);
+        speed = view.findViewById(R.id.seekBarSpeed);
+        preset = new Scraper(registry, testObserver, 0, speed, colorLed, 0);
+        service.execute(preset);
 
         colorSeekBar = view.findViewById(R.id.color_seek_bar);
 
@@ -72,6 +79,27 @@ public class GeneralFragment extends Fragment {
         Button btn_preset8 = view.findViewById(R.id.button_general_patertn8);
 
         textView = view.findViewById(R.id.textView_color);
+
+
+        speed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+               preset.setSpeed(progress);
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
 
         //todo intentarpasar las cosas a HSL  mirarse el color util de android developers
         colorSeekBar.setOnColorChangeListener(new ColorSeekBar.OnColorChangeListener() {
@@ -161,8 +189,7 @@ public class GeneralFragment extends Fragment {
     private void isThisPreset(int preset) {
         this.preset.setStopLighting(false);
 
-        if (this.preset.getPreset() != preset)
-        {
+        if (this.preset.getPreset() != preset) {
             this.preset.setPreset(preset);
         }
     }

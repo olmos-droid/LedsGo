@@ -15,6 +15,10 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.heroicrobot.dropbit.registry.DeviceRegistry;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 /**
@@ -22,6 +26,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
  */
 public class Show extends AppCompatActivity {
     private static final String TAG = "Show";
+    private ExecutorService service;
+    private DeviceRegistry registry;
+    private TestObserver testObserver;
 
 
     /**
@@ -66,6 +73,16 @@ public class Show extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
+        service = Executors.newFixedThreadPool(8);
+        registry = new DeviceRegistry();
+        testObserver = new TestObserver();
+
+        registry.addObserver(testObserver);
+
+        registry.setExtraDelay(0);
+        registry.setAutoThrottle(true);
+        registry.setAntiLog(true);
+        registry.startPushing();
 
 
         button_show_strip_add = findViewById(R.id.button_show_strip_add);
@@ -100,9 +117,9 @@ public class Show extends AppCompatActivity {
         mMainFrame = findViewById(R.id.main_frame);
         mMainNav = findViewById(R.id.main_nav);
 
-        generalFragment = new GeneralFragment();
-        groupsFragment = new GroupsFragment();
-        stripsFragment = new StripsFragment();
+        generalFragment = new GeneralFragment(registry,testObserver,service);
+        groupsFragment = new GroupsFragment(registry,testObserver,service);
+        stripsFragment = new StripsFragment(registry,testObserver,service);
 
         //registry.setExtraDelay(0);
 

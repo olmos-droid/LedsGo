@@ -8,12 +8,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.heroicrobot.dropbit.registry.DeviceRegistry;
+
+import java.util.concurrent.ExecutorService;
+
 
 public class StripsFragment extends Fragment {
+    private DeviceRegistry registry;
+    private TestObserver testObserver;
+    private ExecutorService service;
+
     /**
      * Required empty public constructor
      */
     public StripsFragment() {
+    }
+
+    public StripsFragment(DeviceRegistry registry, TestObserver testObserver,ExecutorService service) {
+        this.registry = registry;
+        this.testObserver = testObserver;
+        this.service = service;
     }
 
     /**

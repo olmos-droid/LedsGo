@@ -2,6 +2,7 @@ package com.example.ledsgo;
 
 
 import android.util.Log;
+import android.widget.SeekBar;
 
 import com.heroicrobot.dropbit.devices.pixelpusher.Pixel;
 import com.heroicrobot.dropbit.devices.pixelpusher.PixelPusher;
@@ -13,6 +14,7 @@ import java.util.List;
 public class Scraper implements Runnable {
     public static final String TAG = "Scraper";
 
+
     private volatile boolean stopLighting = false;
 
 
@@ -20,34 +22,39 @@ public class Scraper implements Runnable {
     private TestObserver testObserver;
     private ColorLed colorLed;
     private int preset;
-    private int speed;
+    private  SeekBar speed;
+
+    private int strip;
 
 
-    public Scraper(DeviceRegistry registry, TestObserver testObserver, int preset, int speed, ColorLed colorLed) {
+    public Scraper(DeviceRegistry registry, TestObserver testObserver, int preset, SeekBar speed, ColorLed colorLed, int strip) {
         this.registry = registry;
         this.testObserver = testObserver;
         this.preset = preset;
         this.colorLed = colorLed;
         this.speed = speed;
+        this.strip = strip;
     }
+
+
+    public SeekBar getSpeed() {
+        return speed;
+    }
+
 
 
     @Override
     public void run() {
-        while (true)
-        {
+        while (true) {
             // todo yo intentaria meterlo en el contrsuctor y cuando el PP estuviera conectado(testobserver.hastrip)
-            if (testObserver.isHasStrips())
-            {
+            if (testObserver.isHasStrips()) {
                 List<PixelPusher> pushers = registry.getPushers(0);
                 List<Strip> strips = registry.getStrips();
                 int frameLimit = registry.getFrameLimit();
 
 
-                if (!stopLighting)
-                {
-                    switch (preset)
-                    {
+                if (!stopLighting) {
+                    switch (preset) {
                         case 1:
                             pattern1(strips);
                             break;
@@ -77,8 +84,7 @@ public class Scraper implements Runnable {
                             break;
                     }
                 }
-            } else
-            {
+            } else {
                 // eso no puede pasar pq el usuario cuando se logea para que aparezcan los
                 // fragments es que hay un pixcel puxer por consiguiente hay strips
 
@@ -88,91 +94,95 @@ public class Scraper implements Runnable {
         }
     }
 
-    /**
-     * @param strips
-     */
+
     void pattern1(List<Strip> strips) {
-        for (int i = 0; i < strips.size(); i++)
-            for (int j = 0; j < strips.get(i).getLength(); j++)
-            {
-                try
-                {
-                    strips.get(i).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
-                    Thread.sleep(registry.getFrameLimit());
-                    strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+        for (int j = 0; j < strips.get(strip).getLength(); j++) {
+            try {
+                strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
+//                Thread.sleep(registry.getFrameLimit());
+                Thread.sleep(speed.getProgress());
+                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
 
 
-                } catch (InterruptedException e)
-                {
-                    e.printStackTrace();
-                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+        }
     }
+
     /**
      * @param strips all leds turn on
      */
     void pattern2(List<Strip> strips) {
-        for (int i = 0; i < strips.size(); i++)
-        {
-            for (int j = 0; j < 24; j++)
-            {
-                strips.get(i).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
-                strips.get(i)
-                ;
-                try
-                {
-                    Thread.sleep(10);
-                } catch (InterruptedException e)
-                {
-                    e.printStackTrace();
-                }
 
-            }
+        for (int j = 0; j < strips.get(strip).getLength(); j++) {
+
+            strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
+            strips.get(strip);
+
         }
     }
+
+
     /**
      * @param strips
      */
     void pattern3(List<Strip> strips) {
-        for (int i = 0; i < strips.size(); i++)
-            for (int j = 24; j < 0; j--)
-            {
-                strips.get(i).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
-                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
-            }
+        try {
+        for (int j = 0; j < strips.get(strip).getLength(); j++) {
+            strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
+        }
+
+            Thread.sleep(getSpeed().getProgress());
+
+        for (int j = 0; j < strips.get(strip).getLength(); j++) {
+          strips.get(strip).setPixel(new Pixel((byte)0, (byte)0,(byte)0), j);
+        }
+
+            Thread.sleep(getSpeed().getProgress());
+
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
     }
+
+
+
     void pattern4(List<Strip> strips) {
         for (int i = 0; i < strips.size(); i++)
-            for (int j = 24; j < 0; j--)
-            {
+            for (int j = 24; j < 0; j--) {
                 strips.get(i).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
                 strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
             }
     }
+
     void pattern5(List<Strip> strips) {
         for (int i = 0; i < strips.size(); i++)
-            for (int j = 24; j < 0; j--)
-            {
+            for (int j = 24; j < 0; j--) {
                 strips.get(i).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
                 strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
             }
     }
+
     void pattern6(List<Strip> strips) {
         for (int i = 0; i < strips.size(); i++)
-            for (int j = strips.size(); j < 0; j--)
-            {
+            for (int j = strips.size(); j < 0; j--) {
                 strips.get(i).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
                 strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
             }
     }
+
     void pattern7(List<Strip> strips) {
         for (int i = 0; i < strips.size(); i++)
-            for (int j = 24; j < 0; j--)
-            {
+            for (int j = strips.get(strip).getLength(); j < 0; j--) {
                 strips.get(i).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
                 strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
             }
     }
+
     /**
      * paint all pixels black
      *
@@ -180,20 +190,13 @@ public class Scraper implements Runnable {
      */
     void pattern8(List<Strip> strips) {
 
-        for (int i = 0; i < strips.size(); i++)
-            for (int j = 0; j < strips.get(i).getLength(); j++)
-            {
-                strips.get(i).setPixel(0, j);
-            }
+
+        for (int j = 0; j < strips.get(strip).getLength(); j++) {
+            strips.get(strip).setPixel(0, j);
+        }
 
         this.setStopLighting(true);
     }
-
-
-
-
-
-
 
 
     public ColorLed getColorLed() {
@@ -245,13 +248,7 @@ public class Scraper implements Runnable {
         this.preset = preset;
     }
 
-    public int getSpeed() {
-        return speed;
+
+    public void setSpeed(int progress) {
     }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-
 }

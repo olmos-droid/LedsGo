@@ -8,8 +8,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.heroicrobot.dropbit.registry.DeviceRegistry;
+
+import java.util.concurrent.ExecutorService;
+
 
 public class GroupsFragment extends Fragment {
+    private DeviceRegistry registry;
+    private TestObserver testObserver;
+    private ExecutorService service;
+
+
+    public GroupsFragment(DeviceRegistry registry, TestObserver testObserver,ExecutorService service) {
+        this.registry = registry;
+        this.testObserver = testObserver;
+        this.service = service;
+    }
+
+
 
 
     /**
