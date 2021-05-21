@@ -172,11 +172,23 @@ public class Scraper implements Runnable {
     }
 
     void pattern5(List<Strip> strips) {
-        for (int i = 0; i < strips.size(); i++)
-            for (int j = 24; j < 0; j--) {
-                strips.get(i).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
-                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+        int i = strips.get(strip).getLength()/2;
+        for (int j = strips.get(strip).getLength()/2; j < strips.get(strip).getLength(); j++) {
+            try {
+                strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
+                strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), i);
+
+                Thread.sleep(speed.getProgress());
+//                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+//                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), i);
+
+
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            i--;
+        }
     }
 
     void pattern6(List<Strip> strips) {
