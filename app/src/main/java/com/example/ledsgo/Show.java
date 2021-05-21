@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.PopupWindow;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.heroicrobot.dropbit.registry.DeviceRegistry;
@@ -29,6 +30,10 @@ public class Show extends AppCompatActivity {
     private ExecutorService service;
     private DeviceRegistry registry;
     private TestObserver testObserver;
+
+    PopupWindow popUp;
+    boolean click = true;
+
 
 
     /**
@@ -72,7 +77,9 @@ public class Show extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_show);
+
         service = Executors.newFixedThreadPool(8);
         registry = new DeviceRegistry();
         testObserver = new TestObserver();
