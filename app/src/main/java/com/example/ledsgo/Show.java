@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -72,6 +73,8 @@ public class Show extends AppCompatActivity {
     private Button button_show_group6;
     private Button button_show_group7;
     private Button button_show_group8;
+
+
 
 
     @Override
