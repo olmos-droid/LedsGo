@@ -63,17 +63,17 @@ public class GeneralFragment extends Fragment {
         service.execute(strip0);
         strip1 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
         service.execute(strip1);
-        strip2 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
+        strip2 = new Scraper(registry, testObserver, 0, speed, colorLed, 2);
         service.execute(strip2);
-        strip3 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
+        strip3 = new Scraper(registry, testObserver, 0, speed, colorLed, 3);
         service.execute(strip3);
-        strip4 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
+        strip4 = new Scraper(registry, testObserver, 0, speed, colorLed, 4);
         service.execute(strip4);
-        strip5 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
+        strip5 = new Scraper(registry, testObserver, 0, speed, colorLed, 5);
         service.execute(strip5);
-        strip6 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
+        strip6 = new Scraper(registry, testObserver, 0, speed, colorLed, 6);
         service.execute(strip6);
-        strip7 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
+        strip7 = new Scraper(registry, testObserver, 0, speed, colorLed, 7);
         service.execute(strip7);
 
 
