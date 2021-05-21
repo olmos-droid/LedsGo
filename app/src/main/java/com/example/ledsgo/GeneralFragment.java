@@ -27,6 +27,12 @@ public class GeneralFragment extends Fragment {
     byte[] colorRGB = {0, 0, 0};
     private Scraper strip0;
     private Scraper strip1;
+    private Scraper strip2;
+    private Scraper strip3;
+    private Scraper strip4;
+    private Scraper strip5;
+    private Scraper strip6;
+    private Scraper strip7;
 
     private ColorLed colorLed = new ColorLed();
     private SeekBar speed;
@@ -35,15 +41,6 @@ public class GeneralFragment extends Fragment {
     private DeviceRegistry registry;
     private TestObserver testObserver;
     private ExecutorService service;
-
-//    private Scraper scraperStrip1;
-//    private Scraper scraperStrip2;
-//    private Scraper scraperStrip3;
-//    private Scraper scraperStrip4;
-//    private Scraper scraperStrip5;
-//    private Scraper scraperStrip6;
-//    private Scraper scraperStrip7;
-//    private Scraper scraperStrip8;
 
 
     /**
@@ -60,13 +57,25 @@ public class GeneralFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-
         View view = inflater.inflate(R.layout.fragment_general, container, false);
         speed = view.findViewById(R.id.seekBarSpeed);
         strip0 = new Scraper(registry, testObserver, 0, speed, colorLed, 0);
         service.execute(strip0);
         strip1 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
         service.execute(strip1);
+        strip2 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
+        service.execute(strip2);
+        strip3 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
+        service.execute(strip3);
+        strip4 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
+        service.execute(strip4);
+        strip5 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
+        service.execute(strip5);
+        strip6 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
+        service.execute(strip6);
+        strip7 = new Scraper(registry, testObserver, 0, speed, colorLed, 1);
+        service.execute(strip7);
+
 
         colorSeekBar = view.findViewById(R.id.color_seek_bar);
 
@@ -86,8 +95,14 @@ public class GeneralFragment extends Fragment {
         speed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-               strip0.setSpeed(progress);
-               strip1.setSpeed(progress);
+                strip0.setSpeed(progress);
+                strip1.setSpeed(progress);
+                strip2.setSpeed(progress);
+                strip3.setSpeed(progress);
+                strip4.setSpeed(progress);
+                strip5.setSpeed(progress);
+                strip6.setSpeed(progress);
+                strip7.setSpeed(progress);
 
             }
 
@@ -133,47 +148,116 @@ public class GeneralFragment extends Fragment {
         btn_preset1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                isThisPreset(1, strip0);
+                isThisPreset(1, strip1);
+
+                isThisPreset(1, strip2);
+
+                isThisPreset(1, strip3);
+
+                isThisPreset(1, strip4);
+
+                isThisPreset(1, strip5);
+
+                isThisPreset(1, strip6);
+
+                isThisPreset(1, strip7);
                 strip0.setStopLighting(false);
                 strip1.setStopLighting(false);
-                isThisPreset(1,strip0);
-                isThisPreset(1,strip1);
+                strip2.setStopLighting(false);
+                strip3.setStopLighting(false);
+                strip4.setStopLighting(false);
+                strip5.setStopLighting(false);
+                strip6.setStopLighting(false);
+                strip7.setStopLighting(false);
+
             }
 
         });
         btn_preset2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(2,strip0);
-                isThisPreset(2,strip1);
+                //                strip0.setStopLighting(false);
+//                strip1.setStopLighting(false);
+                strip0.setStopLighting(false);
+                strip1.setStopLighting(false);
+                strip2.setStopLighting(false);
+                strip3.setStopLighting(false);
+                strip4.setStopLighting(false);
+                strip5.setStopLighting(false);
+                strip6.setStopLighting(false);
+                strip7.setStopLighting(false);
+                isThisPreset(2, strip0);
+                isThisPreset(2, strip1);
+                isThisPreset(2, strip2);
+                isThisPreset(2, strip3);
+                isThisPreset(2, strip4);
+                isThisPreset(2, strip5);
+                isThisPreset(2, strip6);
+                isThisPreset(2, strip7);
             }
         });
         btn_preset3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(3,strip0);
-                isThisPreset(3,strip1);
+                //                strip0.setStopLighting(false);
+//                strip1.setStopLighting(false);
+                strip0.setStopLighting(false);
+                strip1.setStopLighting(false);
+                strip2.setStopLighting(false);
+                strip3.setStopLighting(false);
+                strip4.setStopLighting(false);
+                strip5.setStopLighting(false);
+                strip6.setStopLighting(false);
+                strip7.setStopLighting(false);
+                isThisPreset(3, strip0);
+                isThisPreset(3, strip1);
+                isThisPreset(3, strip2);
+                isThisPreset(3, strip3);
+                isThisPreset(3, strip4);
+                isThisPreset(3, strip5);
+                isThisPreset(3, strip6);
+                isThisPreset(3, strip7);
             }
         });
         btn_preset4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(4,strip0);
-                isThisPreset(4,strip1);
+                isThisPreset(4, strip0);
+                isThisPreset(4, strip1);
+                isThisPreset(4, strip2);
+                isThisPreset(4, strip3);
+                isThisPreset(4, strip4);
+                isThisPreset(4, strip5);
+                isThisPreset(4, strip6);
+                isThisPreset(4, strip7);
             }
         });
         btn_preset5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(5,strip0);
-                isThisPreset(5,strip1);
-
+                isThisPreset(5, strip0);
+                isThisPreset(5, strip1);
+                isThisPreset(5, strip2);
+                isThisPreset(5, strip3);
+                isThisPreset(5, strip4);
+                isThisPreset(5, strip5);
+                isThisPreset(5, strip6);
+                isThisPreset(5, strip7);
             }
         });
         btn_preset6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(6,strip0);
-                isThisPreset(6,strip1);
+                isThisPreset(6, strip0);
+                isThisPreset(6, strip1);
+                isThisPreset(6, strip2);
+                isThisPreset(6, strip3);
+                isThisPreset(6, strip4);
+                isThisPreset(6, strip5);
+                isThisPreset(6, strip6);
+                isThisPreset(6, strip7);
 
 
             }
@@ -181,16 +265,28 @@ public class GeneralFragment extends Fragment {
         btn_preset7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(7,strip0);
-                isThisPreset(7,strip1);
+                isThisPreset(7, strip0);
+                isThisPreset(7, strip1);
+                isThisPreset(7, strip2);
+                isThisPreset(7, strip3);
+                isThisPreset(7, strip4);
+                isThisPreset(7, strip5);
+                isThisPreset(7, strip6);
+                isThisPreset(7, strip7);
             }
         });
 
         btn_preset8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isThisPreset(8,strip0);
-                isThisPreset(8,strip1);
+                isThisPreset(8, strip0);
+                isThisPreset(8, strip1);
+                isThisPreset(8, strip2);
+                isThisPreset(8, strip3);
+                isThisPreset(8, strip4);
+                isThisPreset(8, strip5);
+                isThisPreset(8, strip6);
+                isThisPreset(8, strip7);
             }
         });
         return view;
