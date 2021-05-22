@@ -22,7 +22,7 @@ public class Scraper implements Runnable {
     private TestObserver testObserver;
     private ColorLed colorLed;
     private int preset;
-    private  SeekBar speed;
+    private SeekBar speed;
 
     private int strip;
 
@@ -40,7 +40,6 @@ public class Scraper implements Runnable {
     public SeekBar getSpeed() {
         return speed;
     }
-
 
 
     @Override
@@ -96,10 +95,23 @@ public class Scraper implements Runnable {
 
 
     void pattern1(List<Strip> strips) {
+
         for (int j = 0; j < strips.get(strip).getLength(); j++) {
             try {
                 strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
-//                Thread.sleep(registry.getFrameLimit());
+                //                Thread.sleep(registry.getFrameLimit());
+                Thread.sleep(speed.getProgress());
+                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        for (int j =strips.get(strip).getLength()-1; j>0; j--) {
+            try {
+                strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
+                //                Thread.sleep(registry.getFrameLimit());
                 Thread.sleep(speed.getProgress());
                 strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
 
@@ -129,17 +141,17 @@ public class Scraper implements Runnable {
      */
     void pattern3(List<Strip> strips) {
         try {
-        for (int j = 0; j < strips.get(strip).getLength(); j++) {
-            strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
-        }
+            for (int j = 0; j < strips.get(strip).getLength(); j++) {
+                strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
+            }
 
-            Thread.sleep(getSpeed().getProgress());
+            Thread.sleep(getSpeed().getProgress()*4);
 
-        for (int j = 0; j < strips.get(strip).getLength(); j++) {
-          strips.get(strip).setPixel(new Pixel((byte)0, (byte)0,(byte)0), j);
-        }
+            for (int j = 0; j < strips.get(strip).getLength(); j++) {
+                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+            }
 
-            Thread.sleep(getSpeed().getProgress());
+            Thread.sleep(getSpeed().getProgress()*4);
 
 
         } catch (InterruptedException e) {
@@ -150,10 +162,9 @@ public class Scraper implements Runnable {
     }
 
 
-
     void pattern4(List<Strip> strips) {
-        int i = strips.get(strip).getLength()/2;
-        for (int j = strips.get(strip).getLength()/2; j < strips.get(strip).getLength(); j++) {
+        int i = strips.get(strip).getLength() / 2;
+        for (int j = strips.get(strip).getLength() / 2 - 1; j < strips.get(strip).getLength(); j++) {
             try {
                 strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
                 strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), i);
@@ -161,7 +172,6 @@ public class Scraper implements Runnable {
                 Thread.sleep(speed.getProgress());
                 strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
                 strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), i);
-
 
 
             } catch (InterruptedException e) {
@@ -172,16 +182,21 @@ public class Scraper implements Runnable {
     }
 
     void pattern5(List<Strip> strips) {
-        int i = strips.get(strip).getLength()/2;
-        for (int j = strips.get(strip).getLength()/2; j < strips.get(strip).getLength(); j++) {
+        int point = strips.get(strip).getLength() / 4;
+        int i = point;
+        for (int j = 0; j < point; j++) {
             try {
                 strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
-                strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), i);
+                strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), i + point);
+                strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j + point * 2);
+                strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), i + point * 3 - 1);
+                //                Thread.sleep(registry.getFrameLimit());
 
                 Thread.sleep(speed.getProgress());
-//                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
-//                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), i);
-
+                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), i + point);
+                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j + point * 2);
+                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), i + point * 3 - 1);
 
 
             } catch (InterruptedException e) {
@@ -189,14 +204,91 @@ public class Scraper implements Runnable {
             }
             i--;
         }
+        for (int j = point; j < 0; j--) {
+            try {
+                strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j + 1
+                );
+                strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), i + point);
+                strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j + point * 2);
+                strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), i + point * 3 - 1);
+                //                Thread.sleep(registry.getFrameLimit());
+
+                Thread.sleep(speed.getProgress());
+                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j+1);
+                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), i + point);
+                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j + point * 2);
+                strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), i + point * 3 - 1);
+
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            i++;
+        }
     }
 
     void pattern6(List<Strip> strips) {
-        for (int i = 0; i < strips.size(); i++)
-            for (int j = strips.size(); j < 0; j--) {
-                strips.get(i).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
-                strips.get(i).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+        int i=strips.get(strip).getLength()-1;
+        for (int j = 0; j < strips.get(strip).getLength(); j++) {
+            try {
+                if(j%2==0) {
+
+                    strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
+                    //                Thread.sleep(registry.getFrameLimit());
+                    Thread.sleep(speed.getProgress());
+//                    strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+                }
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+
+        }
+        for (int j = 0; j < strips.get(strip).getLength(); j++) {
+            try {
+                if(j%2==0) {
+
+         //           strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
+                    //                Thread.sleep(registry.getFrameLimit());
+                    Thread.sleep(speed.getProgress());
+                    strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+                }
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+        for (int j = 0; j < strips.get(strip).getLength(); j++) {
+            try {
+                if(j%2!=0) {
+
+                    strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
+                    //                Thread.sleep(registry.getFrameLimit());
+                    Thread.sleep(speed.getProgress());
+//                    strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+                }
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+        for (int j = 0; j < strips.get(strip).getLength(); j++) {
+            try {
+                if(j%2!=0) {
+
+                    //           strips.get(strip).setPixel(new Pixel(colorLed.getRed(), colorLed.getGreen(), colorLed.getBlue()), j);
+                    //                Thread.sleep(registry.getFrameLimit());
+                    Thread.sleep(speed.getProgress());
+                    strips.get(strip).setPixel(new Pixel((byte) 0, (byte) 0, (byte) 0), j);
+                }
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     void pattern7(List<Strip> strips) {

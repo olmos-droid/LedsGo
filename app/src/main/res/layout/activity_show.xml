@@ -69,6 +69,7 @@
                     android:backgroundTint="@color/blue_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Strip 1"
                     app:cornerRadius="0dp" />
 
                 <Button
@@ -80,6 +81,7 @@
                     android:backgroundTint="@color/blue_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Strip 2"
                     app:cornerRadius="0dp" />
 
             </LinearLayout>
@@ -99,6 +101,7 @@
                     android:backgroundTint="@color/blue_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Strip 3"
                     app:cornerRadius="0dp" />
 
                 <Button
@@ -111,6 +114,7 @@
                     android:backgroundTint="@color/blue_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Strip 4"
                     app:cornerRadius="0dp" />
 
                 <Button
@@ -122,6 +126,7 @@
                     android:backgroundTint="@color/blue_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Strip 5"
                     app:cornerRadius="0dp" />
 
             </LinearLayout>
@@ -141,6 +146,7 @@
                     android:backgroundTint="@color/blue_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Strip 6"
                     app:cornerRadius="0dp" />
 
                 <Button
@@ -153,6 +159,7 @@
                     android:backgroundTint="@color/blue_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Strip 7"
                     app:cornerRadius="0dp" />
 
                 <Button
@@ -164,6 +171,7 @@
                     android:backgroundTint="@color/blue_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Strip 8"
                     app:cornerRadius="0dp" />
             </LinearLayout>
         </LinearLayout>
@@ -212,6 +220,7 @@
                     android:backgroundTint="@color/orange_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Grup 1"
                     app:cornerRadius="0dp" />
 
                 <Button
@@ -223,6 +232,7 @@
                     android:backgroundTint="@color/orange_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Grup 2"
                     app:cornerRadius="0dp" />
 
             </LinearLayout>
@@ -242,6 +252,7 @@
                     android:backgroundTint="@color/orange_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Grup 3"
                     app:cornerRadius="0dp" />
 
                 <Button
@@ -254,6 +265,7 @@
                     android:backgroundTint="@color/orange_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Grup 4"
                     app:cornerRadius="0dp" />
 
                 <Button
@@ -265,6 +277,7 @@
                     android:backgroundTint="@color/orange_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Grup 5"
                     app:cornerRadius="0dp" />
 
             </LinearLayout>
@@ -284,6 +297,7 @@
                     android:backgroundTint="@color/orange_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Grup 6"
                     app:cornerRadius="0dp" />
 
                 <Button
@@ -296,6 +310,7 @@
                     android:backgroundTint="@color/orange_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Grup 7"
                     app:cornerRadius="0dp" />
 
                 <Button
@@ -307,6 +322,7 @@
                     android:backgroundTint="@color/orange_50"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:text="Grup 8"
                     app:cornerRadius="0dp" />
             </LinearLayout>
 
