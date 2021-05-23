@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Led\'s Go</string>
+    <string name="create_user">Crear Usuari</string>
+    <string name="username">Nom d\'usuari</string>
+    <string name="password">Contrasenya</string>
+    <string name="startsession">Iniciar sessio</string>
+    <string name="logoDescription">logo de la applicació</string>
+    <string name="confirmPassword">Confirmar Contrasenya</string>
+    <string name="email">Correu electrònic</string>
+    <string name="strips_title">TIRAS</string>
+    <string name="general">GENERAL</string>
+    <string name="color">Color</string>
+</resources>

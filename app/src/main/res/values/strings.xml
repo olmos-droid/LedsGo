@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Led\'s Go</string>
+    <string name="create_user">Sign Up</string>
+    <string name="password">Contrasenya</string>
+    <string name="startsession">Iniciar sessio</string>
+    <string name="logoDescription">logo de la applicació</string>
+    <string name="confirmPassword">Confirmar Contrasenya</string>
+    <string name="email">Correu Electrònic</string>
+    <string name="username">Nom d\'usuari</string>
+    <string name="username_email">Nom d\'usuari / Email</string>
+    <string name="strips_title">TIRES</string>
+    <string name="user">Usuari</string>
+    <string name="turn_off">Apagar</string>
+    <string name="reset">Reiniciar</string>
+
+    <string name="groups">Grups</string>
+    <string name="groups_title">GRUPS</string>
+    <string name="general">GENERAL</string>
+    <string name="color">Color</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
 </resources>
