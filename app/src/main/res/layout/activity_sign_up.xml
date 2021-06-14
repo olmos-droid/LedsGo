@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_SignUp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_100"
+    tools:context=".SignUp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout_SignUp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        android:paddingTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView_Errors_logo"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_margin="3dp"
+            android:contentDescription="@string/logoDescription"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/logocompleto" />
+
+        <EditText
+            android:id="@+id/editText_SignUp_NickName"
+
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autofillHints=""
+            android:backgroundTint="@color/white_50"
+            android:ems="10"
+            android:fontFamily="@font/source_code_pro_medium"
+            android:hint="@string/username"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white_50"
+            android:textColorHint="@color/white_50"
+            android:textColorLink="@color/white"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/editText_SignUp_EmailAddress"
+
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autofillHints=""
+            android:backgroundTint="@color/white_50"
+            android:ems="10"
+            android:fontFamily="@font/source_code_pro_medium"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white_50"
+            android:textColorHint="@color/white_50"
+            android:textColorLink="@color/white"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/editText_SignUp_Password"
+
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autofillHints=""
+            android:backgroundTint="@color/white_50"
+            android:ems="10"
+            android:fontFamily="@font/source_code_pro_medium"
+            android:hint="@string/password"
+            android:inputType="textVisiblePassword"
+            android:textColor="@color/white_50"
+            android:textColorHint="@color/white_50"
+            android:textColorLink="@color/white"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/editText_SignUp_ConfirmPassword"
+
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autofillHints=""
+            android:backgroundTint="@color/white_50"
+            android:ems="10"
+            android:fontFamily="@font/source_code_pro_medium"
+            android:hint="@string/confirmPassword"
+            android:inputType="textVisiblePassword"
+            android:textColor="@color/white_50"
+            android:textColorHint="@color/white_50"
+            android:textColorLink="@color/white"
+            android:textSize="14sp" />
+
+        <Spinner
+            android:id="@+id/Spinner_SignUp_Paises"
+            android:layout_width="306dp"
+            android:layout_height="45dp"
+            android:background="@color/purple_50" />
+
+        <Button
+            android:id="@+id/button_Signin_CreateUser"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/source_code_pro_black"
+            android:text="@string/create_user"
+            android:textColor="@color/purple_100"
+            app:cornerRadius="0dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="152dp"
+            android:orientation="vertical"
+            android:paddingTop="40dp">
+
+            <TextView
+                android:id="@+id/textView_SingUp_ComprobarEmail"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:layout_gravity="center"
+                android:alpha="1"
+                android:fontFamily="@font/source_code_pro_medium"
+                android:gravity="center_horizontal"
+                android:hint="@string/ConfirmEmail"
+                android:textColorHint="@color/white_50" />
+
+            <EditText
+                android:id="@+id/editText_SignUp_GeneratedString"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:alpha="1"
+                android:backgroundTint="@color/white_50"
+                android:enabled="false"
+                android:fontFamily="@font/source_code_pro_medium"
+                android:hint="@string/generatedString"
+                android:textColor="@color/white_50"
+                android:textColorHint="@color/white_50"
+                android:textColorLink="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <Button
+                android:id="@+id/button_SignUp_Comprovar"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:alpha="1"
+                android:backgroundTint="@color/white"
+                android:enabled="false"
+                android:fontFamily="@font/source_code_pro_black"
+                android:text="@string/comprovar"
+                android:textColor="@color/purple_100"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/button_SignUp_Reenviar"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:alpha="1"
+                android:backgroundTint="@color/white"
+                android:enabled="false"
+                android:fontFamily="@font/source_code_pro_black"
+                android:text="@string/reenviar"
+                android:textColor="@color/purple_100"
+                app:cornerRadius="0dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@color/purple_100_trans"
+    android:gravity="bottom|start"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_Header_cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_50"
+        app:cardBackgroundColor="@color/purple_50">
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_Header_Perfil"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView_Header_User"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                tools:srcCompat="@drawable/ic_baseline_person_24" />
+
+            <TextView
+                android:id="@+id/textView_Header_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_100_trans"
+                android:fontFamily="@font/source_code_pro_medium"
+                android:gravity="center"
+                android:textColor="@color/white_50"
+                android:textColorHint="@color/white_50"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

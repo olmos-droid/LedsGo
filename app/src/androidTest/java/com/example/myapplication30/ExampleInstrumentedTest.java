@@ -1,4 +1,4 @@
-package com.example.ledsgo;
+package com.example.myapplication30;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.ledsgo", appContext.getPackageName());
+        assertEquals("com.example.myapplication30", appContext.getPackageName());
     }
 }
