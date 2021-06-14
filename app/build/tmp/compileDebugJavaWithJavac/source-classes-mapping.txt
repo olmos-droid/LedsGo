@@ -1,0 +1,89 @@
+com/example/myapplication30/ColorLed.java
+ com.example.myapplication30.ColorLed
+com/example/myapplication30/GeneralFragment.java
+ com.example.myapplication30.GeneralFragment
+ com.example.myapplication30.GeneralFragment$1
+ com.example.myapplication30.GeneralFragment$10
+ com.example.myapplication30.GeneralFragment$2
+ com.example.myapplication30.GeneralFragment$3
+ com.example.myapplication30.GeneralFragment$4
+ com.example.myapplication30.GeneralFragment$5
+ com.example.myapplication30.GeneralFragment$6
+ com.example.myapplication30.GeneralFragment$7
+ com.example.myapplication30.GeneralFragment$8
+ com.example.myapplication30.GeneralFragment$9
+com/example/myapplication30/BuildConfig.java
+ com.example.myapplication30.BuildConfig
+com/example/myapplication30/Errors.java
+ com.example.myapplication30.Errors
+com/example/myapplication30/Groups.java
+ com.example.myapplication30.Groups
+com/example/myapplication30/Tira.java
+ com.example.myapplication30.Tira
+com/example/myapplication30/ReportErrors.java
+ com.example.myapplication30.ReportErrors
+ com.example.myapplication30.ReportErrors$1
+ com.example.myapplication30.ReportErrors$2
+ com.example.myapplication30.ReportErrors$2$1
+com/example/myapplication30/TestObserver.java
+ com.example.myapplication30.TestObserver
+com/example/myapplication30/Scraper.java
+ com.example.myapplication30.Scraper
+com/example/myapplication30/Users.java
+ com.example.myapplication30.Users
+com/example/myapplication30/GroupsFragment.java
+ com.example.myapplication30.GroupsFragment
+ com.example.myapplication30.GroupsFragment$1
+ com.example.myapplication30.GroupsFragment$10
+ com.example.myapplication30.GroupsFragment$2
+ com.example.myapplication30.GroupsFragment$3
+ com.example.myapplication30.GroupsFragment$4
+ com.example.myapplication30.GroupsFragment$5
+ com.example.myapplication30.GroupsFragment$6
+ com.example.myapplication30.GroupsFragment$7
+ com.example.myapplication30.GroupsFragment$8
+ com.example.myapplication30.GroupsFragment$9
+com/example/myapplication30/StripsFragment.java
+ com.example.myapplication30.StripsFragment
+com/example/myapplication30/SignUp.java
+ com.example.myapplication30.SignUp
+ com.example.myapplication30.SignUp$1
+ com.example.myapplication30.SignUp$2
+ com.example.myapplication30.SignUp$3
+ com.example.myapplication30.SignUp$4
+ com.example.myapplication30.SignUp$5
+com/example/myapplication30/ForgotPass.java
+ com.example.myapplication30.ForgotPass
+ com.example.myapplication30.ForgotPass$1
+com/example/myapplication30/ConnectPP.java
+ com.example.myapplication30.ConnectPP
+com/example/myapplication30/SendEmail.java
+ com.example.myapplication30.SendEmail
+ com.example.myapplication30.SendEmail$1
+ com.example.myapplication30.SendEmail$Mail
+com/example/myapplication30/Perfil.java
+ com.example.myapplication30.Perfil
+ com.example.myapplication30.Perfil$1
+ com.example.myapplication30.Perfil$2
+ com.example.myapplication30.Perfil$3
+ com.example.myapplication30.Perfil$4
+com/example/myapplication30/LogIn.java
+ com.example.myapplication30.LogIn
+ com.example.myapplication30.LogIn$1
+ com.example.myapplication30.LogIn$2
+ com.example.myapplication30.LogIn$3
+ com.example.myapplication30.LogIn$3$1
+ com.example.myapplication30.LogIn$4
+com/example/myapplication30/Show.java
+ com.example.myapplication30.Show
+ com.example.myapplication30.Show$1
+ com.example.myapplication30.Show$2
+ com.example.myapplication30.Show$3
+ com.example.myapplication30.Show$4
+ com.example.myapplication30.Show$5
+ com.example.myapplication30.Show$5$1
+ com.example.myapplication30.Show$6
+ com.example.myapplication30.Show$6$1
+ com.example.myapplication30.Show$6$2
+ com.example.myapplication30.Show$7
+ com.example.myapplication30.Show$8

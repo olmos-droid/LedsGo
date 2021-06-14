@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\paull\\AndroidStudioProjects\\MyApplication30\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ca-rAD\\values-ca-rAD.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\paull\\AndroidStudioProjects\\MyApplication30\\app\\src\\main\\res\\values-ca-rAD\\strings.xml",
+                    "from": {
+                        "startLines": "2,12,8,3,9,11,7,5,6,10,4",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,586,377,102,443,542,311,206,255,495,155",
+                        "endColumns": "46,39,65,52,51,43,65,48,55,46,50",
+                        "endOffsets": "97,621,438,150,490,581,372,250,306,537,201"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,102,142,208,261,313,357,423,472,528,575",
+                        "endColumns": "46,39,65,52,51,43,65,48,55,46,50",
+                        "endOffsets": "97,137,203,256,308,352,418,467,523,570,621"
+                    }
+                }
+            ]
+        }
+    ]
+}

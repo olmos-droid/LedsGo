@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: ./app/PixelPusher.jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/PixelPusher.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
